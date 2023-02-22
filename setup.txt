@@ -1,0 +1,3 @@
+- install git
+https://git-scm.com/download/win
+(git 64bit windows installer, just Next on everything on the installer)
