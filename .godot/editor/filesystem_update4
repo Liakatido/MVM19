@@ -1,13 +1,12 @@
-res://scenes/levels/test/test_4.tscn
+res://scenes/levels/cave/caveSelfLair.tscn
 res://scenes/levels/tilesets/cave_tileset.tres
 res://scenes/game.tscn
 res://scenes/menus/main_menu.tscn
 res://scenes/levels/base_level.tscn
 res://scenes/player/player.tscn
 res://scenes/levels/level_gate.tscn
-res://scenes/levels/test/test_1.tscn
 res://scenes/levels/test/test_2.tscn
 res://scenes/levels/test/test_3.tscn
-res://scenes/player/player.gd
-res://scenes/player/attack.gd
+res://scenes/levels/test/test_4.tscn
 res://scenes/player/attack.tscn
+res://scenes/levels/cave/caveTunnel.tscn

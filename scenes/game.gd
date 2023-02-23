@@ -28,7 +28,7 @@ func start_game():
 	main_menu.hide()
 	# hard coded level
 	# TODO: get gate and level spawn from some save data
-	switch_to_level("res://scenes/levels/test/test_1.tscn", "left", false)
+	switch_to_level("res://scenes/levels/cave/caveSelfLair.tscn", "safeCave", false)
 
 func exit_game():
 	get_tree().quit()
