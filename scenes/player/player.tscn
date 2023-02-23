@@ -3,16 +3,17 @@
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_8hr0t"]
 [ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="2_q41ka"]
 [ext_resource type="Texture2D" uid="uid://jwfyci77n6ac" path="res://assets/particles/dash.png" id="2_uowsm"]
+<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://cg6uluve6o0hx" path="res://assets/sounds/player/step.ogg" id="3_hio8v"]
 [ext_resource type="AudioStream" uid="uid://ddlx4wnd52liv" path="res://assets/sounds/player/jump.ogg" id="4_0egjy"]
 [ext_resource type="AudioStream" uid="uid://bl33gc0ceut4j" path="res://assets/sounds/player/attack.ogg" id="5_bq6ic"]
 [ext_resource type="AudioStream" uid="uid://crjj7bdivn0vf" path="res://assets/sounds/player/dash.ogg" id="7_hclhd"]
 [ext_resource type="AudioStream" uid="uid://5pvtgkqln6ir" path="res://assets/sounds/player/spit.ogg" id="8_cexea"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcpus"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m74t"]
 size = Vector2(8.5, 13.5)
 
-[sub_resource type="Animation" id="Animation_4dop6"]
+[sub_resource type="Animation" id="Animation_nw8et"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -27,7 +28,41 @@ tracks/0/keys = {
 "values": [Rect2(0, 0, 32, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_julyj"]
+[sub_resource type="Animation" id="Animation_hfdrm"]
+resource_name = "attack"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 128, 32, 32), Rect2(32, 128, 32, 32), Rect2(64, 128, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_h3285"]
+resource_name = "dash"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 96, 32, 32), Rect2(32, 96, 32, 32), Rect2(64, 96, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_ccbwd"]
 resource_name = "idle"
 length = 0.8
 loop_mode = 1
@@ -45,7 +80,7 @@ tracks/0/keys = {
 "values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_do1lq"]
+[sub_resource type="Animation" id="Animation_6vkfp"]
 resource_name = "jump"
 length = 0.1
 tracks/0/type = "value"
@@ -61,7 +96,7 @@ tracks/0/keys = {
 "values": [Rect2(0, 32, 32, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_0y1uh"]
+[sub_resource type="Animation" id="Animation_ar5qv"]
 resource_name = "run"
 length = 0.6
 loop_mode = 1
@@ -95,51 +130,17 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_5qux8"]
-resource_name = "attack"
-length = 0.15
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Rect2(0, 128, 32, 32), Rect2(32, 128, 32, 32), Rect2(64, 128, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_oo870"]
-resource_name = "dash"
-length = 0.2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Rect2(0, 96, 32, 32), Rect2(32, 96, 32, 32), Rect2(64, 96, 32, 32)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yeykl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nc25p"]
 _data = {
-"RESET": SubResource("Animation_4dop6"),
-"attack": SubResource("Animation_5qux8"),
-"dash": SubResource("Animation_oo870"),
-"idle": SubResource("Animation_julyj"),
-"jump": SubResource("Animation_do1lq"),
-"run": SubResource("Animation_0y1uh")
+"RESET": SubResource("Animation_nw8et"),
+"attack": SubResource("Animation_hfdrm"),
+"dash": SubResource("Animation_h3285"),
+"idle": SubResource("Animation_ccbwd"),
+"jump": SubResource("Animation_6vkfp"),
+"run": SubResource("Animation_ar5qv")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_htvlh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1t6l"]
 size = Vector2(8, 12)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -147,7 +148,7 @@ script = ExtResource("1_8hr0t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_dcpus")
+shape = SubResource("RectangleShape2D_0m74t")
 
 [node name="DashParticles" type="CPUParticles2D" parent="."]
 position = Vector2(0, -16)
@@ -166,7 +167,7 @@ region_rect = Rect2(0, 0, 32, 32)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_yeykl")
+"": SubResource("AnimationLibrary_nc25p")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -178,26 +179,18 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_htvlh")
+shape = SubResource("RectangleShape2D_o1t6l")
 debug_color = Color(0.87451, 0.345098, 0, 0.419608)
 
 [node name="WalkAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_hio8v")
-volume_db = -10.0
 
 [node name="JumpAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_0egjy")
-volume_db = -18.0
 pitch_scale = 0.8
 
 [node name="AttackAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_bq6ic")
-volume_db = -12.0
 pitch_scale = 0.9
 
 [node name="DashAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_hclhd")
-volume_db = -10.0
 pitch_scale = 1.1
 
 [node name="SpitAudio" type="AudioStreamPlayer" parent="."]
