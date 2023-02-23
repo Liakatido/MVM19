@@ -1,0 +1,13 @@
+Label
+CollisionShape2D
+Area2D
+Node
+Marker2D
+Camera2D
+AnimationPlayer
+Sprite2D
+CharacterBody2D
+TileMap
+Button
+VBoxContainer
+MarginContainer

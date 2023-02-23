@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://n3qu2bq3xjpe"]
+
+[ext_resource type="Script" path="res://scenes/menus/MenuButtons.gd" id="1_oq8kc"]
+[ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_tugie"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tugie")
+
+[node name="MenuButtons" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oq8kc")
+
+[node name="Buttons" type="VBoxContainer" parent="MenuButtons"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Start" type="Button" parent="MenuButtons/Buttons"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="Exit" type="Button" parent="MenuButtons/Buttons"]
+layout_mode = 2
+text = "Exit
+"
+
+[connection signal="pressed" from="MenuButtons/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MenuButtons/Buttons/Exit" to="." method="_on_exit_pressed"]

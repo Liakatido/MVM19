@@ -1,0 +1,4 @@
+## Collision/Mask Layers
+1 - Main collision layer
+2 - Player
+3 - Enemies

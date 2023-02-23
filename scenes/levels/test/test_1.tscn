@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://boh52jcf6nesu"]
+
+[ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_2wmv3"]
+[ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_wb5ks"]
+
+[node name="Test1" instance=ExtResource("1_2wmv3")]
+
+[node name="LevelGate" parent="Gates" index="0" instance=ExtResource("2_wb5ks")]
+position = Vector2(7, 178)
+scale = Vector2(1.34994, 2.22942)
+gate_id = "left"
+to_level = "res://scenes/levels/test/test_3.tscn"
+to_gate = "entry"
+
+[node name="Marker2D" parent="Gates/LevelGate" index="1"]
+position = Vector2(16.297, 5.83112)
+
+[node name="LevelGate2" parent="Gates" index="1" instance=ExtResource("2_wb5ks")]
+position = Vector2(440, 175)
+scale = Vector2(1.2239, 2.1224)
+gate_id = "right"
+to_level = "res://scenes/levels/test/test_2.tscn"
+to_gate = "entry"
+
+[node name="Marker2D" parent="Gates/LevelGate2" index="1"]
+position = Vector2(-15.5241, 7.06748)
+
+[editable path="Gates/LevelGate"]
+[editable path="Gates/LevelGate2"]
