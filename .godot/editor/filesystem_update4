@@ -11,3 +11,5 @@ res://scenes/levels/test/test_3.tscn
 res://scenes/player/player.gd
 res://scenes/player/attack.gd
 res://scenes/player/attack.tscn
+res://scenes/player/spit.tscn
+res://scenes/player/spit.gd

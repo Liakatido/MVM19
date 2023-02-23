@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const Attack = preload("res://scenes/player/attack.tscn")
+const Spit = preload("res://scenes/player/spit.tscn")
 const DashTextureRight = preload("res://assets/particles/dash.png")
 const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 
@@ -9,6 +10,7 @@ const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 @onready var walk_audio = $WalkAudio
 @onready var jump_audio = $JumpAudio
 @onready var attack_audio = $AttackAudio
+@onready var spit_audio = $SpitAudio
 @onready var dash_audio = $DashAudio
 @onready var dash_particles = $DashParticles
 @onready var attack_marker = $AttackMarker
@@ -39,6 +41,11 @@ var dashing : bool = false
 var can_dash : bool = false
 var dash_ticker : float
 
+# spit data
+const SPIT_COOLDOWN = 2.0
+var spit_ticker : float
+var can_spit : bool = true
+
 
 func _ready():
 	attack_marker_x = attack_marker.position.x
@@ -58,6 +65,13 @@ func _unhandled_input(event):
 		animations.play("dash")
 		dashing = true
 		dash_particles.emitting = true
+	if event.is_action_pressed("spit") and can_spit and not dashing:
+		var spit = Spit.instantiate()
+		spit.set_orientation(orientation)
+		can_spit = false
+		spit.global_position = self.global_position + Vector2(orientation.x*5, -10)
+		get_parent().add_child(spit)
+		spit_audio.play()
 	
 
 func _process(delta):
@@ -68,17 +82,26 @@ func _process(delta):
 			attack_ticker = 0
 			can_attack = true
 	
+	# handle dashing duration
 	if dashing:
 		dash_ticker += delta
 		if dash_ticker > DASH_DURATION:
 			dashing = false
 			dash_particles.emitting = false
 	
+	# handle dash cooldown
 	if not can_dash and not dashing:
 		dash_ticker += delta
 		if dash_ticker > DASH_COOLDOWN:
 			dash_ticker = 0
 			can_dash = true
+	
+	# handle spit cooldown
+	if not can_spit:
+		spit_ticker += delta
+		if spit_ticker > SPIT_COOLDOWN:
+			spit_ticker = 0
+			can_spit = true
 
 func _physics_process(delta):
 	if disabled:
