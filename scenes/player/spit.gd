@@ -9,6 +9,8 @@ const GooDown = preload("res://scenes/player/goo_down.tscn")
 @onready var hitbox = $Hitbox
 @onready var particles = $CPUParticles2D
 
+const DAMAGE = 5
+
 const SPEED : float = 200
 const UP_SPEED : float = 100
 const GRAVITY : float = 220
@@ -84,6 +86,16 @@ func spawn_goo_from_tilemap(map: TileMap):
 	get_parent().call_deferred("add_child", goo)
 	goo.global_position = goo_pos
 
+func destroy():
+	disabled = true
+	hitbox.set_deferred("monitoring", false)
+	particles.emitting = false
+	sprite.hide() # play hit animation
+	
+	# set so bullet is queued free when particles dissipate
+	var q_free_timer = get_tree().create_timer(1.5)
+	q_free_timer.connect("timeout", queue_free)
+
 func _on_hitbox_body_entered(body):
 	# this is so it doesn't trigger more than once
 	if disabled:
@@ -96,11 +108,8 @@ func _on_hitbox_body_entered(body):
 	if body is TileMap:
 		spawn_goo_from_tilemap(body)
 	
-	disabled = true
-	hitbox.set_deferred("monitoring", false)
-	particles.emitting = false
-	sprite.hide() # play hit animation
-	
-	# set so bullet is queued free when particles dissipate
-	var q_free_timer = get_tree().create_timer(1.5)
-	q_free_timer.connect("timeout", queue_free)
+	destroy()
+
+func _on_hitbox_area_entered(area):
+	area.hit(DAMAGE)
+	destroy()
