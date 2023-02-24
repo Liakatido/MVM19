@@ -51,7 +51,7 @@ func spawn_goo_from_tilemap(map: TileMap):
 	var pos_inside_tilemap = map.to_local(global_position)
 	var standing_tile = map.local_to_map(pos_inside_tilemap)
 	var surrounding_tiles = map.get_surrounding_cells(standing_tile)
-	var global_pos_of_surrounding_tiles : Array
+	var global_pos_of_surrounding_tiles : Array = []
 	
 	for tile_i in surrounding_tiles:
 		var tile_id = map.get_cell_source_id(0, tile_i)
