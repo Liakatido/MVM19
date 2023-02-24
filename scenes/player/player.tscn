@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://y8luxha0f61d"]
+[gd_scene load_steps=18 format=3 uid="uid://y8luxha0f61d"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_8hr0t"]
 [ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="2_q41ka"]
 [ext_resource type="Texture2D" uid="uid://jwfyci77n6ac" path="res://assets/particles/dash.png" id="2_uowsm"]
 [ext_resource type="AudioStream" uid="uid://cg6uluve6o0hx" path="res://assets/sounds/player/step.ogg" id="3_hio8v"]
 [ext_resource type="AudioStream" uid="uid://ddlx4wnd52liv" path="res://assets/sounds/player/jump.ogg" id="4_0egjy"]
-[ext_resource type="Texture2D" uid="uid://c5732q3cgouvf" path="res://assets/backgrounds/caves1.png" id="4_ayyog"]
 [ext_resource type="AudioStream" uid="uid://bl33gc0ceut4j" path="res://assets/sounds/player/attack.ogg" id="5_bq6ic"]
 [ext_resource type="AudioStream" uid="uid://crjj7bdivn0vf" path="res://assets/sounds/player/dash.ogg" id="7_hclhd"]
 [ext_resource type="AudioStream" uid="uid://5pvtgkqln6ir" path="res://assets/sounds/player/spit.ogg" id="8_cexea"]
@@ -208,19 +207,3 @@ pitch_scale = 0.9
 
 [node name="AttackMarker" type="Marker2D" parent="."]
 position = Vector2(10, -7)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.3, 0.3)
-
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-modulate = Color(0.580392, 0.580392, 0.580392, 1)
-light_mask = 3
-z_index = -5
-offset_left = -478.0
-offset_top = -269.0
-offset_right = 514.0
-offset_bottom = 314.0
-texture = ExtResource("4_ayyog")
-stretch_mode = 1

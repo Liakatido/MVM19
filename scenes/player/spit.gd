@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+const GooLeft = preload("res://scenes/player/goo_left.tscn")
+const GooRight = preload("res://scenes/player/goo_right.tscn")
+const GooUp = preload("res://scenes/player/goo_up.tscn")
+const GooDown = preload("res://scenes/player/goo_down.tscn")
+
 @onready var sprite = $Sprite2D
 @onready var hitbox = $Hitbox
 @onready var particles = $CPUParticles2D
@@ -28,7 +33,19 @@ func set_orientation(orientation : Vector2):
 	if orientation == Vector2.LEFT:
 		shooting_direction.x = -1
 
-func find_position_from_tilemap(map: TileMap):
+func get_goo_scene(direction : Vector2) -> PackedScene:
+	match direction:
+		Vector2.DOWN:
+			return GooDown
+		Vector2.LEFT:
+			return GooLeft
+		Vector2.RIGHT:
+			return GooRight
+		Vector2.UP:
+			return GooUp
+	return GooRight
+
+func spawn_goo_from_tilemap(map: TileMap):
 	var pos_inside_tilemap = map.to_local(global_position)
 	var standing_tile = map.local_to_map(pos_inside_tilemap)
 	var surrounding_tiles = map.get_surrounding_cells(standing_tile)
@@ -47,14 +64,21 @@ func find_position_from_tilemap(map: TileMap):
 	var from_tile_to_here : Vector2 = closest_tile.direction_to(global_position)
 	var is_horizontal : bool = abs(from_tile_to_here.x) > abs(from_tile_to_here.y)
 	
+	var goo_pos : Vector2
+	var goo_direction : Vector2
 	if is_horizontal:
 		const tile_x_size = 16
-		var goo_pos : Vector2 = Vector2(tile_x_size*sign(from_tile_to_here.x), global_position.y)
-		return goo_pos
+		goo_pos = Vector2(tile_x_size*sign(from_tile_to_here.x), global_position.y)
+		goo_direction = Vector2.RIGHT * sign(from_tile_to_here.x)
 	else:
 		const tile_y_size = 16
-		var goo_pos : Vector2 = Vector2(global_position.x, tile_y_size*sign(from_tile_to_here.y))
-		return goo_pos
+		goo_pos = Vector2(global_position.x, tile_y_size*sign(from_tile_to_here.y))
+		goo_direction = Vector2.DOWN * sign(from_tile_to_here.y)
+	
+	# spawn goo
+	var goo = get_goo_scene(goo_direction).instantiate()
+	get_parent().add_child(goo)
+	goo.global_position = goo_pos
 
 func _on_hitbox_body_entered(body):
 	# this is so it doesn't trigger more than once
@@ -66,8 +90,7 @@ func _on_hitbox_body_entered(body):
 		return
 	
 	if body is TileMap:
-		var goo_pos = find_position_from_tilemap(body)
-		# spawn goo
+		spawn_goo_from_tilemap(body)
 	
 	disabled = true
 	hitbox.set_deferred("monitoring", false)

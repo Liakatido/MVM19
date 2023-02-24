@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvrm6vavhxmmc"]
+
+[ext_resource type="Texture2D" uid="uid://cah4evg6ueolx" path="res://assets/tileset.png" id="1_4m0ai"]
+[ext_resource type="Script" path="res://scenes/player/goo.gd" id="1_v0nli"]
+[ext_resource type="Script" path="res://scenes/player/hitbox.gd" id="3_3v3vh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oskr5"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71qcj"]
+
+[node name="GooLeft" type="StaticBody2D"]
+script = ExtResource("1_v0nli")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 0)
+texture = ExtResource("1_4m0ai")
+region_enabled = true
+region_rect = Rect2(160, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_oskr5")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_3v3vh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_71qcj")
