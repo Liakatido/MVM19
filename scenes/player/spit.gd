@@ -27,18 +27,53 @@ func _physics_process(delta):
 func set_orientation(orientation : Vector2):
 	if orientation == Vector2.LEFT:
 		shooting_direction.x = -1
-	
 
-# hitted environment
+func find_position_from_tilemap(map: TileMap):
+	var pos_inside_tilemap = map.to_local(global_position)
+	var standing_tile = map.local_to_map(pos_inside_tilemap)
+	var surrounding_tiles = map.get_surrounding_cells(standing_tile)
+	var global_pos_of_surrounding_tiles : Array
+	
+	for tile_i in surrounding_tiles:
+		var pos = map.to_global(map.map_to_local(tile_i))
+		global_pos_of_surrounding_tiles.append(pos)
+	
+	var closest_tile : Vector2 = Vector2(99999999999999, 99999999999999) # really big vector so its always the furthestst away
+	for tile in surrounding_tiles:
+		var distance = global_position.distance_to(tile)
+		if distance < global_position.distance_to(closest_tile):
+			closest_tile = tile
+	
+	var from_tile_to_here : Vector2 = closest_tile.direction_to(global_position)
+	var is_horizontal : bool = abs(from_tile_to_here.x) > abs(from_tile_to_here.y)
+	
+	if is_horizontal:
+		const tile_x_size = 16
+		var goo_pos : Vector2 = Vector2(tile_x_size*sign(from_tile_to_here.x), global_position.y)
+		return goo_pos
+	else:
+		const tile_y_size = 16
+		var goo_pos : Vector2 = Vector2(global_position.x, tile_y_size*sign(from_tile_to_here.y))
+		return goo_pos
+
 func _on_hitbox_body_entered(body):
+	# this is so it doesn't trigger more than once
 	if disabled:
 		return
+	
+	# dont collide with player or itself
 	if body.is_in_group("player") or body.is_in_group("spit"):
 		return
+	
+	if body is TileMap:
+		var goo_pos = find_position_from_tilemap(body)
+		# spawn goo
+	
 	disabled = true
 	hitbox.set_deferred("monitoring", false)
 	particles.emitting = false
 	sprite.hide() # play hit animation
+	
 	# set so bullet is queued free when particles dissipate
 	var q_free_timer = get_tree().create_timer(1.5)
 	q_free_timer.connect("timeout", queue_free)
