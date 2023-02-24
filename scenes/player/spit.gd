@@ -52,11 +52,15 @@ func spawn_goo_from_tilemap(map: TileMap):
 	var global_pos_of_surrounding_tiles : Array
 	
 	for tile_i in surrounding_tiles:
+		var tile_id = map.get_cell_source_id(0, tile_i)
+		# empty tile on tilemap
+		if tile_id < 0:
+			continue
 		var pos = map.to_global(map.map_to_local(tile_i))
 		global_pos_of_surrounding_tiles.append(pos)
 	
 	var closest_tile : Vector2 = Vector2(99999999999999, 99999999999999) # really big vector so its always the furthestst away
-	for tile in surrounding_tiles:
+	for tile in global_pos_of_surrounding_tiles:
 		var distance = global_position.distance_to(tile)
 		if distance < global_position.distance_to(closest_tile):
 			closest_tile = tile
@@ -68,16 +72,16 @@ func spawn_goo_from_tilemap(map: TileMap):
 	var goo_direction : Vector2
 	if is_horizontal:
 		const tile_x_size = 16
-		goo_pos = Vector2(tile_x_size*sign(from_tile_to_here.x), global_position.y)
+		goo_pos = Vector2(closest_tile.x+tile_x_size*sign(from_tile_to_here.x), global_position.y)
 		goo_direction = Vector2.RIGHT * sign(from_tile_to_here.x)
 	else:
 		const tile_y_size = 16
-		goo_pos = Vector2(global_position.x, tile_y_size*sign(from_tile_to_here.y))
+		goo_pos = Vector2(global_position.x, closest_tile.y+tile_y_size*sign(from_tile_to_here.y))
 		goo_direction = Vector2.DOWN * sign(from_tile_to_here.y)
 	
 	# spawn goo
 	var goo = get_goo_scene(goo_direction).instantiate()
-	get_parent().add_child(goo)
+	get_parent().call_deferred("add_child", goo)
 	goo.global_position = goo_pos
 
 func _on_hitbox_body_entered(body):
