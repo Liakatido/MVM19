@@ -164,7 +164,8 @@ texture = ExtResource("1_eiree")
 0:3/0/physics_layer_1/angular_velocity = 0.0
 
 [resource]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 physics_layer_1/collision_layer = 128
 physics_layer_1/collision_mask = 128
 sources/0 = SubResource("TileSetAtlasSource_8hwqp")
