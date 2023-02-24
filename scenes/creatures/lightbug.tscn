@@ -27,9 +27,15 @@ script = ExtResource("1_pqjrx")
 texture = ExtResource("1_mxshh")
 
 [node name="emitter" type="PointLight2D" parent="lightbugSprite"]
+light_mask = 2
+visibility_layer = 2
+z_index = -5
 scale = Vector2(3.03, 3)
 color = Color(0.305882, 0.74902, 0.411765, 1)
 energy = 0.9
+shadow_enabled = true
+shadow_filter = 1
+shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_bifmq")
 
 [node name="lightbugCollison" type="CollisionShape2D" parent="."]

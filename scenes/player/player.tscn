@@ -216,6 +216,7 @@ motion_scale = Vector2(0.3, 0.3)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color(0.580392, 0.580392, 0.580392, 1)
+light_mask = 3
 z_index = -5
 offset_left = -478.0
 offset_top = -269.0

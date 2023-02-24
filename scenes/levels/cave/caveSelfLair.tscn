@@ -52,7 +52,7 @@ position = Vector2(-169.131, 5.18281)
 position = Vector2(-156.876, 11.308)
 
 [node name="lightbug" parent="." index="2" instance=ExtResource("3_830w8")]
-position = Vector2(125, 102)
+position = Vector2(115, 187)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]
