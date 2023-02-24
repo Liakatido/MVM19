@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://euanwexm70yw"]
+
+[ext_resource type="Texture2D" uid="uid://c75bbysctk6s1" path="res://assets/creatures/lightbug.png" id="1_mxshh"]
+[ext_resource type="Script" path="res://scenes/creatures/lightbug.gd" id="1_pqjrx"]
+
+[sub_resource type="Gradient" id="Gradient_uttqb"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bifmq"]
+gradient = SubResource("Gradient_uttqb")
+fill = 1
+fill_from = Vector2(0.495413, 0.472477)
+fill_to = Vector2(0.857798, 0.807339)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51g0d"]
+radius = 5.09902
+
+[node name="lightbug" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 2
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_pqjrx")
+
+[node name="lightbugSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_mxshh")
+
+[node name="emitter" type="PointLight2D" parent="lightbugSprite"]
+scale = Vector2(3.03, 3)
+color = Color(0.305882, 0.74902, 0.411765, 1)
+energy = 0.9
+texture = SubResource("GradientTexture2D_bifmq")
+
+[node name="lightbugCollison" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+shape = SubResource("CircleShape2D_51g0d")
