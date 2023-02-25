@@ -214,6 +214,7 @@ follow_viewport_enabled = true
 scroll_base_scale = Vector2(0.3, 0.3)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(1, 1)
 
 [node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer"]
 texture_repeat = 2
