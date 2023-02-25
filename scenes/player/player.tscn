@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://y8luxha0f61d"]
+[gd_scene load_steps=24 format=3 uid="uid://y8luxha0f61d"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_8hr0t"]
 [ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="2_q41ka"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://crjj7bdivn0vf" path="res://assets/sounds/player/dash.ogg" id="7_hclhd"]
 [ext_resource type="AudioStream" uid="uid://5pvtgkqln6ir" path="res://assets/sounds/player/spit.ogg" id="8_cexea"]
 [ext_resource type="Texture2D" uid="uid://cqiksaji3x2wf" path="res://assets/particles/dust.png" id="9_hkxte"]
+[ext_resource type="Texture2D" uid="uid://c5732q3cgouvf" path="res://assets/backgrounds/caves1.png" id="10_ygic6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dcpus"]
 size = Vector2(8.5, 13.5)
@@ -91,6 +92,44 @@ tracks/0/keys = {
 "values": [Rect2(0, 96, 32, 32), Rect2(32, 96, 32, 32), Rect2(64, 96, 32, 32)]
 }
 
+[sub_resource type="Animation" id="Animation_gvm56"]
+resource_name = "down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 160, 32, 32), Rect2(32, 160, 32, 32)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.95, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2)
+}
+
 [sub_resource type="Animation" id="Animation_julyj"]
 resource_name = "idle"
 length = 0.8
@@ -157,44 +196,6 @@ tracks/1/keys = {
 "args": [0.0],
 "method": &"play"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_gvm56"]
-resource_name = "down"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Rect2(0, 160, 32, 32), Rect2(32, 160, 32, 32)]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.2)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.95, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.2)
 }
 
 [sub_resource type="Animation" id="Animation_ewou4"]
@@ -316,6 +317,20 @@ pitch_scale = 0.9
 
 [node name="AttackMarker" type="Marker2D" parent="."]
 position = Vector2(10, -7)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(0.3, 0.3)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 712.0
+offset_bottom = 430.0
+texture = ExtResource("10_ygic6")
+stretch_mode = 1
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

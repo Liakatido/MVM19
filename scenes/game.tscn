@@ -41,6 +41,7 @@ mouse_filter = 2
 value = 100.0
 texture_under = ExtResource("3_qib50")
 texture_progress = ExtResource("4_26oja")
+tint_progress = Color(0.172549, 0.301961, 0.364706, 1)
 
 [node name="uiSpit" type="TextureProgressBar" parent="uiLayer/uiMargins/uiSegments/uiBars"]
 unique_name_in_owner = true
