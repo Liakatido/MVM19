@@ -18,7 +18,7 @@ const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 
 const SPEED = 85.0
 const JUMP_VELOCITY = -190.0
-const GRAVITY = 520
+var GRAVITY = 520
 
 const LEFT = -1
 const RIGHT = 1
@@ -64,6 +64,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("attack") and can_attack and not dashing:
+		GRAVITY = 380 #lowering the impact of gravity so air attacks a bit more reliable
 		attack_audio.play()
 		can_attack = false
 		var attack = Attack.instantiate()
@@ -106,6 +107,7 @@ func _process(delta):
 		attack_ticker += delta
 		if attack_ticker > ATTACK_COOLDOWN:
 			attack_ticker = 0
+			GRAVITY = 520 #reseting gravity after air attacking.
 			can_attack = true
 	
 	# handle dashing duration

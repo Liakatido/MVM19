@@ -26,10 +26,9 @@ position = Vector2(16.297, -23.773)
 [node name="LevelGate2" parent="Gates" index="1" instance=ExtResource("2_dfde7")]
 position = Vector2(440, 192)
 scale = Vector2(1.2239, 2.1224)
-gate_id = "rightExit"
-active = false
-to_level = "res://scenes/levels/test/test_2.tscn"
-to_gate = "entry"
+gate_id = "selfLairRight"
+to_level = "res://scenes/levels/cave/caveSmallRoom.tscn"
+to_gate = "smallLeft"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
 position = Vector2(-53.926, -28.7411)
@@ -52,7 +51,7 @@ position = Vector2(-169.131, 5.18281)
 position = Vector2(-156.876, 11.308)
 
 [node name="lightbug" parent="." index="2" instance=ExtResource("3_830w8")]
-position = Vector2(115, 187)
+position = Vector2(164, 177)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]

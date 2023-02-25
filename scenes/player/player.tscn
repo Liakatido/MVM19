@@ -324,11 +324,10 @@ scroll_base_scale = Vector2(0.3, 0.3)
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite2D" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.560784, 0.682353, 0.690196, 1)
 texture_repeat = 2
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 712.0
-offset_bottom = 430.0
+offset_right = 964.0
+offset_bottom = 510.0
 texture = ExtResource("10_ygic6")
 stretch_mode = 1
 
