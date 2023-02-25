@@ -6,6 +6,7 @@ signal switch_to_level(level, gate)
 
 const Player = preload("res://scenes/player/player.tscn")
 const BreakableTile = preload("res://scenes/levels/breakable_tile.tscn")
+const BreakAudio = preload("res://assets/sounds/player/crash.ogg")
 
 @onready var tilemap = $TileMap
 @onready var gates = $Gates
@@ -65,6 +66,7 @@ func setup_breakable_tiles():
 		breakable_tile.connect("broken", break_tile)
 
 func break_tile(x, y):
+	Utils.spawn_audio(BreakAudio, -24)
 	var tilemap_layer = 0
 	tilemap.erase_cell(tilemap_layer, Vector2(x, y))
 

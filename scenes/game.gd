@@ -6,6 +6,8 @@ var current_level : Level
 var last_gate : String
 
 func _ready():
+	# connect to global Utils
+	Utils.game = self
 	# connect ui signals
 	main_menu.connect("start_pressed", start_game)
 	main_menu.connect("exit_pressed", exit_game)
@@ -32,3 +34,13 @@ func start_game():
 
 func exit_game():
 	get_tree().quit()
+
+func spawn_audio(sound, db : float = 0):
+	var audio_to_spawn = AudioStreamPlayer.new()
+	add_child(audio_to_spawn)
+	
+	audio_to_spawn.stream = sound
+	audio_to_spawn.volume_db = db
+	audio_to_spawn.process_mode = Node.PROCESS_MODE_ALWAYS
+	audio_to_spawn.connect("finished", audio_to_spawn.queue_free)
+	audio_to_spawn.play()
