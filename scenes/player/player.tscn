@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://y8luxha0f61d"]
+[gd_scene load_steps=19 format=3 uid="uid://y8luxha0f61d"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_8hr0t"]
 [ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="2_q41ka"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bl33gc0ceut4j" path="res://assets/sounds/player/attack.ogg" id="5_bq6ic"]
 [ext_resource type="AudioStream" uid="uid://crjj7bdivn0vf" path="res://assets/sounds/player/dash.ogg" id="7_hclhd"]
 [ext_resource type="AudioStream" uid="uid://5pvtgkqln6ir" path="res://assets/sounds/player/spit.ogg" id="8_cexea"]
+[ext_resource type="Texture2D" uid="uid://c5732q3cgouvf" path="res://assets/backgrounds/caves1.png" id="9_b274i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dcpus"]
 size = Vector2(8.5, 13.5)
@@ -207,3 +208,16 @@ pitch_scale = 0.9
 
 [node name="AttackMarker" type="Marker2D" parent="."]
 position = Vector2(10, -7)
+
+[node name="Background" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
+scroll_base_scale = Vector2(0.3, 0.3)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer"]
+texture_repeat = 2
+offset_right = 1086.0
+offset_bottom = 700.0
+texture = ExtResource("9_b274i")
+stretch_mode = 1
