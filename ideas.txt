@@ -3,3 +3,4 @@
 2 - Player
 3 - Enemies
 4 - eatables
+5 - breakables

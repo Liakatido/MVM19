@@ -16,6 +16,7 @@ const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 @onready var dash_particles = $DashParticles
 @onready var attack_marker = $AttackMarker
 @onready var dust_particles = $DustParticles
+@onready var dash_hitbox = $ChargeHitbox
 
 const SPEED = 85.0
 const JUMP_VELOCITY = -190.0
@@ -27,6 +28,7 @@ const RIGHT = 1
 var orientation : Vector2 = Vector2.RIGHT
 var disabled : bool = false
 var was_on_floor : bool = true
+var invincible : bool = false
 
 # attack data
 const ATTACK_COOLDOWN : float = 0.4
@@ -43,6 +45,7 @@ const DASH_COOLDOWN = 1.2
 var dashing : bool = false
 var can_dash : bool = false
 var dash_ticker : float
+var dash_hitbox_pos : Vector2
 
 # spit data
 const SPIT_COOLDOWN = 2.0
@@ -62,6 +65,9 @@ func _ready():
 	# setup crouch data
 	original_sprite_pos = sprite.position
 	crouch_sprite_pos = original_sprite_pos + Vector2(0, 1)
+	
+	# setup dash data
+	dash_hitbox_pos = dash_hitbox.position
 
 func _unhandled_input(event):
 	if event.is_action_pressed("attack") and can_attack and not dashing and not crouching:
@@ -145,6 +151,7 @@ func _physics_process(delta):
 	
 	# handle dash
 	if dashing:
+		break_entities()
 		velocity = orientation * DASH_SPEED
 		move_and_slide()
 		return
@@ -167,11 +174,13 @@ func _physics_process(delta):
 		sprite.flip_h = true
 		attack_marker.position.x = -attack_marker_x
 		dash_particles.texture = DashTextureLeft
+		dash_hitbox.position = dash_hitbox_pos * Vector2(-1, 0)
 	if direction == RIGHT:
 		sprite.flip_h = false
 		attack_marker.position.x = attack_marker_x
 		orientation = Vector2.RIGHT
 		dash_particles.texture = DashTextureRight
+		dash_hitbox.position = dash_hitbox_pos
 	
 	# handle horizontal movement
 	if direction:
@@ -217,3 +226,10 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_animation_player_animation_started(anim_name):
 	if anim_name != "down" and crouching:
 		reset_after_crouch()
+
+
+func break_entities():
+	var entities = dash_hitbox.get_overlapping_areas()
+	for entity in entities:
+		if entity.has_method("break_object"):
+			entity.break_object()

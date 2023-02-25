@@ -5,6 +5,7 @@ class_name Level
 signal switch_to_level(level, gate)
 
 const Player = preload("res://scenes/player/player.tscn")
+const BreakableTile = preload("res://scenes/levels/breakable_tile.tscn")
 
 @onready var tilemap = $TileMap
 @onready var gates = $Gates
@@ -34,6 +35,7 @@ func setup():
 	setup_camera(player.get_node("Camera2D"))
 	
 	# setup level specific stuff
+	setup_breakable_tiles()
 	
 	setup_complete = true
 
@@ -42,6 +44,29 @@ func setup_gates():
 	for gate in gates.get_children():
 		available_gates[gate.gate_id] = gate
 		gate.connect("player_entered_gate", signal_switch_level)
+
+func setup_breakable_tiles():
+	var tilemap_layer = 0
+	for cell in tilemap.get_used_cells(tilemap_layer):
+		var tile_data = tilemap.get_cell_tile_data(tilemap_layer, cell)
+		var breakable = tile_data.get_custom_data("breakable")
+		
+		if not breakable:
+			continue
+		
+		# setup tile breaking on charge
+		var cell_global_pos = tilemap.to_global(tilemap.map_to_local(cell))
+		var breakable_tile = BreakableTile.instantiate()
+		add_child(breakable_tile)
+		breakable_tile.global_position = cell_global_pos
+		
+		breakable_tile.x = cell.x
+		breakable_tile.y = cell.y
+		breakable_tile.connect("broken", break_tile)
+
+func break_tile(x, y):
+	var tilemap_layer = 0
+	tilemap.erase_cell(tilemap_layer, Vector2(x, y))
 
 func _process(_delta):
 	if not setup_complete:
