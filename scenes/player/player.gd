@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const Attack = preload("res://scenes/player/attack.tscn")
 const Spit = preload("res://scenes/player/spit.tscn")
+const Bite = preload("res://scenes/player/bite.tscn")
 const DashTextureRight = preload("res://assets/particles/dash.png")
 const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 
@@ -63,7 +64,7 @@ func _ready():
 	crouch_sprite_pos = original_sprite_pos + Vector2(0, 1)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("attack") and can_attack and not dashing:
+	if event.is_action_pressed("attack") and can_attack and not dashing and not crouching:
 		GRAVITY = 380 #lowering the impact of gravity so air attacks a bit more reliable
 		attack_audio.play()
 		can_attack = false
@@ -72,6 +73,12 @@ func _unhandled_input(event):
 		attack.global_position = attack_marker.global_position
 		attack.do_attack(orientation)
 		animations.play("attack")
+	
+	if event.is_action_pressed("attack") and crouching:
+		var bite = Bite.instantiate()
+		add_child(bite)
+		bite.global_position = global_position + Vector2(4, 0)*orientation + Vector2(0, -6)
+		bite.bite()
 	
 	if event.is_action_pressed("dash") and can_dash:
 		dash_audio.play()

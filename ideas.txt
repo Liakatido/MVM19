@@ -2,3 +2,4 @@
 1 - Main collision layer
 2 - Player
 3 - Enemies
+4 - eatables
