@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd8l3nify8mfu"]
+[gd_scene load_steps=5 format=3 uid="uid://bd8l3nify8mfu"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_e5lny"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_dfde7"]
 [ext_resource type="PackedScene" uid="uid://euanwexm70yw" path="res://scenes/creatures/lightbug.tscn" id="3_830w8"]
+[ext_resource type="PackedScene" uid="uid://bgj7arkqm4aa6" path="res://scenes/creatures/enemy.tscn" id="4_372i7"]
 
 [node name="caveSelfLair" instance=ExtResource("1_e5lny")]
 
@@ -52,6 +53,9 @@ position = Vector2(-156.876, 11.308)
 
 [node name="lightbug" parent="." index="2" instance=ExtResource("3_830w8")]
 position = Vector2(164, 177)
+
+[node name="Enemy" parent="." index="3" instance=ExtResource("4_372i7")]
+position = Vector2(147, 189)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]

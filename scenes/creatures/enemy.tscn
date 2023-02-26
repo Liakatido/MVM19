@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgj7arkqm4aa6"]
+
+[ext_resource type="Script" path="res://scenes/creatures/enemy.gd" id="1_723ig"]
+[ext_resource type="Texture2D" uid="uid://cr16lv8tcq2u6" path="res://assets/creatures/dummy.png" id="1_cbflf"]
+[ext_resource type="Script" path="res://scenes/player/hitbox.gd" id="3_1xfts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bw8u"]
+size = Vector2(12, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xyia"]
+size = Vector2(16, 32)
+
+[sub_resource type="Animation" id="Animation_xe4uw"]
+resource_name = "hit"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kydi0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2qqk"]
+_data = {
+"RESET": SubResource("Animation_kydi0"),
+"hit": SubResource("Animation_xe4uw")
+}
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_723ig")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cbflf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_7bw8u")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitoring = false
+script = ExtResource("3_1xfts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_8xyia")
+debug_color = Color(0.996078, 0, 0.207843, 0.419608)
+
+[node name="BasicAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k2qqk")
+}
