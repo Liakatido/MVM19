@@ -11,6 +11,9 @@ func _ready():
 	# connect ui signals
 	main_menu.connect("start_pressed", start_game)
 	main_menu.connect("exit_pressed", exit_game)
+	
+	# load last save
+	load_game()
 
 func switch_to_level(level, gate, clean_previous : bool = true):
 	# fade
@@ -26,11 +29,26 @@ func switch_to_level(level, gate, clean_previous : bool = true):
 	last_gate = gate
 	call_deferred("add_child", current_level)
 
+func load_game():
+	# hardcoded save state
+	# TODO: restore save state from file
+	var save_state = GlobalData.SaveState.new()
+	save_state.health = 100
+	save_state.max_health = 100
+	save_state.max_ammo = 4
+	save_state.ammo = 4
+	save_state.tail_enabled = true
+	save_state.spit_enabled = true
+	save_state.dash_enabled = true
+	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
+	save_state.gate = "safeCave"
+	Data.last_save = save_state
+	
+	Data.set_stats_from_last_save()
+
 func start_game():
 	main_menu.hide()
-	# hard coded level
-	# TODO: get gate and level spawn from some save data
-	switch_to_level("res://scenes/levels/cave/caveSelfLair.tscn", "safeCave", false)
+	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
 
 func exit_game():
 	get_tree().quit()

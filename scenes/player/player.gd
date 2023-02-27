@@ -8,6 +8,7 @@ const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 
 @onready var sprite = $Sprite2D
 @onready var animations = $AnimationPlayer
+@onready var invincible_animation = $InvincibleAnimation
 @onready var walk_audio = $WalkAudio
 @onready var jump_audio = $JumpAudio
 @onready var attack_audio = $AttackAudio
@@ -28,7 +29,11 @@ const RIGHT = 1
 var orientation : Vector2 = Vector2.RIGHT
 var disabled : bool = false
 var was_on_floor : bool = true
+
+# invicibility data
 var invincible : bool = false
+var invincible_ticker : float
+const INVINCIBILITY_PERIOD = 1.0
 
 # attack data
 const ATTACK_COOLDOWN : float = 0.4
@@ -86,14 +91,14 @@ func _unhandled_input(event):
 		bite.global_position = global_position + Vector2(4, 0)*orientation + Vector2(0, -6)
 		bite.bite()
 	
-	if event.is_action_pressed("dash") and can_dash:
+	if event.is_action_pressed("dash") and can_dash and Data.dash_enabled:
 		dash_audio.play()
 		can_dash = false
 		animations.play("dash")
 		dashing = true
 		dash_particles.emitting = true
 	
-	if event.is_action_pressed("spit") and can_spit and not dashing:
+	if event.is_action_pressed("spit") and can_spit and not dashing and Data.spit_enabled:
 		var spit = Spit.instantiate()
 		spit.set_orientation(orientation)
 		spit.global_position = self.global_position + Vector2(orientation.x*5, -10)
@@ -115,6 +120,12 @@ func _unhandled_input(event):
 	
 
 func _process(delta):
+	if invincible:
+		invincible_ticker += delta
+		if invincible_ticker > INVINCIBILITY_PERIOD:
+			invincible_ticker = 0
+			end_invincibility()
+	
 	# handle attack cooldown
 	if not can_attack:
 		attack_ticker += delta
@@ -215,6 +226,21 @@ func reset_after_crouch():
 	sprite.scale = Vector2(1, 1)
 	sprite.position = original_sprite_pos
 	crouching = false
+
+func get_hit(damage):
+	if not invincible:
+		# todo: play hurt sound
+		# todo: some knockback?
+		Data.health -= damage
+		start_invincibilty()
+
+func start_invincibilty():
+	invincible = true
+	invincible_animation.play("invincible")
+
+func end_invincibility():
+	invincible = false
+	invincible_animation.play("RESET")
 
 # handle cleaning after animations finish, when needed
 func _on_animation_player_animation_finished(anim_name):
