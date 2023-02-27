@@ -6,6 +6,7 @@ const Bite = preload("res://scenes/player/bite.tscn")
 const DashTextureRight = preload("res://assets/particles/dash.png")
 const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 const Corpse = preload("res://scenes/player/player_corpse.tscn")
+const HurtSound = preload("res://assets/sounds/player/hurt.ogg")
 
 @onready var sprite = $Sprite2D
 @onready var animations = $AnimationPlayer
@@ -239,8 +240,9 @@ func reset_after_crouch():
 
 func get_hit(damage):
 	if not invincible:
-		# todo: play hurt sound
 		# todo: some knockback?
+		# play audio outside of player node, so when it dies, the sound doesn't cut
+		Utils.spawn_audio(HurtSound, -13)
 		Data.health -= damage
 		start_invincibilty()
 

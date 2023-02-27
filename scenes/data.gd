@@ -37,7 +37,6 @@ func _set_max_health(value):
 
 func _set_health(value):
 	health = value
-	print(value)
 	if health > max_health:
 		health = max_health
 	if health <= 0:
