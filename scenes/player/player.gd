@@ -5,9 +5,11 @@ const Spit = preload("res://scenes/player/spit.tscn")
 const Bite = preload("res://scenes/player/bite.tscn")
 const DashTextureRight = preload("res://assets/particles/dash.png")
 const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
+const Corpse = preload("res://scenes/player/player_corpse.tscn")
 
 @onready var sprite = $Sprite2D
 @onready var animations = $AnimationPlayer
+@onready var camera = $Camera2D
 @onready var invincible_animation = $InvincibleAnimation
 @onready var walk_audio = $WalkAudio
 @onready var jump_audio = $JumpAudio
@@ -18,6 +20,7 @@ const DashTextureLeft = preload("res://assets/particles/dash_inverse.png")
 @onready var attack_marker = $AttackMarker
 @onready var dust_particles = $DustParticles
 @onready var dash_hitbox = $ChargeHitbox
+@onready var hitbox = $Hitbox
 
 const SPEED = 85.0
 const JUMP_VELOCITY = -190.0
@@ -33,7 +36,7 @@ var was_on_floor : bool = true
 # invicibility data
 var invincible : bool = false
 var invincible_ticker : float
-const INVINCIBILITY_PERIOD = 1.0
+const INVINCIBILITY_PERIOD = 1.5
 
 # attack data
 const ATTACK_COOLDOWN : float = 0.4
@@ -73,8 +76,15 @@ func _ready():
 	
 	# setup dash data
 	dash_hitbox_pos = dash_hitbox.position
+	
+	# connect signals
+	hitbox.connect("got_hit", get_hit)
+	Data.connect("player_died", destroy)
 
 func _unhandled_input(event):
+	if disabled:
+		return
+	
 	if event.is_action_pressed("attack") and can_attack and not dashing and not crouching:
 		GRAVITY = 380 #lowering the impact of gravity so air attacks a bit more reliable
 		attack_audio.play()
@@ -241,6 +251,24 @@ func start_invincibilty():
 func end_invincibility():
 	invincible = false
 	invincible_animation.play("RESET")
+
+func destroy():
+	disabled = true
+	# spawn corpse
+	var corpse = Corpse.instantiate()
+	corpse.global_position = global_position
+	corpse.velocity = velocity
+	if orientation == Vector2.LEFT:
+		corpse.scale = Vector2(-1, 1)
+	get_parent().add_child(corpse)
+	
+	# set camera to follow corpse
+	remove_child(camera)
+	corpse.add_child(camera)
+	
+	# destroy player node
+	hide()
+	call_deferred("queue_free")
 
 # handle cleaning after animations finish, when needed
 func _on_animation_player_animation_finished(anim_name):

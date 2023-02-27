@@ -50,6 +50,10 @@ func start_game():
 	main_menu.hide()
 	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
 
+func reload_from_save():
+	Data.set_stats_from_last_save()
+	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
+
 func exit_game():
 	get_tree().quit()
 

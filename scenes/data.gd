@@ -8,10 +8,10 @@ signal max_ammo_changed
 signal ammo_changed
 signal player_died
 
-var max_health : int = 100
-var health : int = 100
-var ammo : int = 4
-var max_ammo : int = 4
+var max_health : int = 100 : set = _set_max_health
+var health : int = 100 : set = _set_health
+var ammo : int = 4 : set = _set_ammo
+var max_ammo : int = 4 : set = _set_max_ammo
 
 var tail_enabled : bool
 var dash_enabled : bool
@@ -37,6 +37,7 @@ func _set_max_health(value):
 
 func _set_health(value):
 	health = value
+	print(value)
 	if health > max_health:
 		health = max_health
 	if health <= 0:
