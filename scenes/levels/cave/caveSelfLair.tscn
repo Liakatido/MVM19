@@ -55,13 +55,9 @@ position = Vector2(-156.876, 11.308)
 position = Vector2(164, 177)
 
 [node name="DamageArea" parent="." index="3" instance=ExtResource("4_510ia")]
-position = Vector2(260, 203)
+position = Vector2(203, 203)
 damage = 20
-
-[node name="CollisionShape2D" parent="DamageArea" index="0"]
-position = Vector2(5, 3)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]
 [editable path="Gates/LevelGate3"]
-[editable path="DamageArea"]

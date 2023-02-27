@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctkmmatjuug00"]
+[gd_scene load_steps=12 format=3 uid="uid://ctkmmatjuug00"]
 
 [ext_resource type="PackedScene" uid="uid://n3qu2bq3xjpe" path="res://scenes/menus/main_menu.tscn" id="1_8whak"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_bvgdj"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://sm5t4eilgead" path="res://assets/ui/healthBar2.png" id="4_26oja"]
 [ext_resource type="Texture2D" uid="uid://btfgljjful7df" path="res://assets/ui/spitBar.png" id="5_wi3jr"]
 [ext_resource type="Texture2D" uid="uid://b2455rpvronkt" path="res://assets/ui/spitBar2.png" id="7_f8opt"]
+[ext_resource type="Texture2D" uid="uid://dthoqqmp4a3pc" path="res://assets/plain.png" id="8_6y1yu"]
+[ext_resource type="Script" path="res://scenes/DeathScreen.gd" id="8_ep68s"]
+[ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="9_ss3gf"]
+[ext_resource type="PackedScene" uid="uid://bbibb01cxsmf2" path="res://scenes/menus/death_menu.tscn" id="10_oru0b"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_bvgdj")
@@ -51,3 +55,50 @@ max_value = 4.0
 value = 4.0
 texture_under = ExtResource("5_wi3jr")
 texture_progress = ExtResource("7_f8opt")
+
+[node name="DeathScreenLayer" type="CanvasLayer" parent="."]
+
+[node name="DeathScreen" type="Control" parent="DeathScreenLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_ep68s")
+
+[node name="ObscureTexture" type="TextureRect" parent="DeathScreenLayer/DeathScreen"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.0980392, 0.0980392, 0.0980392, 0.698039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_6y1yu")
+
+[node name="Corpse" type="Sprite2D" parent="DeathScreenLayer/DeathScreen"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("9_ss3gf")
+region_enabled = true
+region_rect = Rect2(0, 224, 32, 32)
+
+[node name="DeathMenu" parent="DeathScreenLayer/DeathScreen" instance=ExtResource("10_oru0b")]
+unique_name_in_owner = true
+visible = false
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 61.0
+offset_bottom = 52.0
+grow_horizontal = 1
+grow_vertical = 1

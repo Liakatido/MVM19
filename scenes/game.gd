@@ -1,6 +1,7 @@
 extends Node
 
 @onready var main_menu = $MainMenu
+@onready var death_screen = get_node("%DeathScreen")
 
 var current_level : Level
 var last_gate : String
@@ -53,6 +54,11 @@ func start_game():
 func reload_from_save():
 	Data.set_stats_from_last_save()
 	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
+
+func show_death_screen(corpse_position : Vector2, corpse_left : bool = false):
+	death_screen.corpse_position = corpse_position
+	death_screen.corpse_left = corpse_left
+	death_screen.show_death_screen()
 
 func exit_game():
 	get_tree().quit()
