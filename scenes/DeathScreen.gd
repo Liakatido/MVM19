@@ -35,7 +35,7 @@ func show_death_screen():
 	var final_pos = corpse_position + death_menu_offset
 	var initial_pos = final_pos + Vector2(0, 20)
 
-	tween.parallel().tween_callback(death_menu.show)
+	tween.tween_callback(death_menu.show)
 	tween.parallel().tween_property(death_menu, "position", final_pos, DEATH_MENU_ANIMATION_DURATION).from(initial_pos)
 	tween.parallel().tween_property(death_menu, "modulate", DEATH_MENU_FINAL_COLOR, DEATH_MENU_ANIMATION_DURATION).from(DEATH_MENU_STARTING_COLOR)
 

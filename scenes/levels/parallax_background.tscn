@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://wlibgfi11p7"]
+
+[ext_resource type="Texture2D" uid="uid://c5732q3cgouvf" path="res://assets/backgrounds/caves1.png" id="1_mp752"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_base_scale = Vector2(0.3, 0.3)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1, 1)
+
+[node name="Sprite2D" type="TextureRect" parent="ParallaxLayer"]
+modulate = Color(0.560784, 0.682353, 0.690196, 1)
+texture_repeat = 2
+offset_right = 964.0
+offset_bottom = 510.0
+texture = ExtResource("1_mp752")
+stretch_mode = 1
