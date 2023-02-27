@@ -1,5 +1,8 @@
 extends Control
 
+signal reload_triggered
+signal back_to_menu_triggered
+
 @onready var corpse_sprite = get_node("%Corpse")
 @onready var obscure_texture = get_node("%ObscureTexture")
 @onready var death_menu = get_node("%DeathMenu")
@@ -18,6 +21,10 @@ const OBSCURE_ANIMATION_DURATION = 2 # seconds
 
 func _ready():
 	death_menu_offset = Vector2(-death_menu.size.x/2, -death_menu.size.y)
+	
+	# setup signals
+	death_menu.connect("continue_selected", emit_reload)
+	death_menu.connect("exit_selected", emit_back_to_menu)
 
 func show_death_screen():
 	show()
@@ -44,3 +51,11 @@ func hide_death_screen():
 	obscure_texture.hide()
 	corpse_sprite.hide()
 	death_menu.hide()
+
+func emit_reload():
+	hide_death_screen()
+	emit_signal("reload_triggered")
+
+func emit_back_to_menu():
+	hide_death_screen()
+	emit_signal("back_to_menu_triggered")

@@ -13,8 +13,8 @@ func _ready():
 	main_menu.connect("start_pressed", start_game)
 	main_menu.connect("exit_pressed", exit_game)
 	
-	# load last save
-	load_game()
+	death_screen.connect("reload_triggered", reload_from_save)
+	death_screen.connect("back_to_menu_triggered", reload_menu)
 
 func switch_to_level(level, gate, clean_previous : bool = true):
 	# fade
@@ -49,16 +49,21 @@ func load_game():
 
 func start_game():
 	main_menu.hide()
+	load_game()
 	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
 
 func reload_from_save():
 	Data.set_stats_from_last_save()
-	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
+	switch_to_level(Data.last_save.level, Data.last_save.gate)
 
 func show_death_screen(corpse_position : Vector2, corpse_left : bool = false):
 	death_screen.corpse_position = corpse_position
 	death_screen.corpse_left = corpse_left
 	death_screen.show_death_screen()
+
+func reload_menu():
+	current_level.disable()
+	main_menu.show()
 
 func exit_game():
 	get_tree().quit()
