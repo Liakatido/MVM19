@@ -270,7 +270,7 @@ func reset_after_crouch():
 
 func get_hit(damage, _direction):
 	if not invincible:
-		# todo: some knockback?
+		get_stunned()
 		# play audio outside of player node, so when it dies, the sound doesn't cut
 		Utils.spawn_audio(HurtSound, -13)
 		Data.health -= damage
