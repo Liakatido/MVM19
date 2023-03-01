@@ -268,7 +268,7 @@ func reset_after_crouch():
 	sprite.position = original_sprite_pos
 	crouching = false
 
-func get_hit(damage):
+func get_hit(damage, _direction):
 	if not invincible:
 		# todo: some knockback?
 		# play audio outside of player node, so when it dies, the sound doesn't cut
@@ -343,6 +343,9 @@ func break_entities():
 				get_stunned()
 
 func crash_against_wall():
+	# avoid an editor warning
+	if not crash_hitbox.monitoring:
+		return
 	var bodies = crash_hitbox.get_overlapping_bodies()
 	# there is always 1 body inside (player)
 	if bodies.any(func(x) -> bool: return x is TileMap):

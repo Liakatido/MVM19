@@ -29,7 +29,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func get_eaten(_damage):
+func get_eaten(_damage, _direction):
 	if disabled:
 		return
 	

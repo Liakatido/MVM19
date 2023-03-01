@@ -5,6 +5,8 @@ extends Area2D
 
 const DAMAGE = 10
 
+var attack_direction : Vector2
+
 func do_attack(orientation : Vector2):
 	# animate
 	animations.play("attack")
@@ -13,15 +15,14 @@ func do_attack(orientation : Vector2):
 	if orientation == Vector2.LEFT:
 		sprite.flip_h = true
 	
-	# damage enmies inside
-
+	attack_direction = orientation
 	
 	# setup destroying the object
 	animations.connect("animation_finished", clear_object)
 
 func hit_inside_attack():
 	for hittable in get_overlapping_areas():
-		hittable.hit(DAMAGE)
+		hittable.hit(DAMAGE, attack_direction)
 
 func clear_object(_animation):
 	queue_free()

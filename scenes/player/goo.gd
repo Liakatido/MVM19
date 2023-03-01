@@ -8,7 +8,7 @@ func _ready():
 	get_node("Hitbox").connect("got_hit", destroy)
 
 
-func destroy(_damage):
+func destroy(_damage, _direction):
 	Utils.spawn_audio(Sound, -13)
 	var particles = Particles.instantiate()
 	get_parent().add_child(particles)
