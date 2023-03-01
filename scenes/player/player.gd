@@ -85,7 +85,6 @@ func _ready():
 	# setup dash data
 	dash_hitbox_pos = dash_hitbox.position
 	crash_hitbox_pos = crash_hitbox.position
-	print(crash_hitbox_pos)
 	
 	# connect signals
 	hitbox.connect("got_hit", get_hit)
@@ -200,6 +199,7 @@ func _physics_process(delta):
 	# handle dash
 	if dashing:
 		break_entities()
+		crash_against_wall()
 		velocity = orientation * DASH_SPEED
 		move_and_slide()
 		return
@@ -331,7 +331,8 @@ func break_entities():
 			if should_stun:
 				get_stunned()
 
-
-func _on_crash_hitbox_body_entered(body):
-	if dashing:
+func crash_against_wall():
+	var bodies = crash_hitbox.get_overlapping_bodies()
+	# there is always 1 body inside (player)
+	if bodies.any(func(x) -> bool: return x is TileMap):
 		get_stunned()

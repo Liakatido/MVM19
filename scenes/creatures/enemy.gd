@@ -13,13 +13,6 @@ const GRAVITY = 100.0
 func _ready():
 	hitbox.connect("got_hit", get_hit)
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-
-	move_and_slide()
-
 func get_hit(damage):
 	animations.play("hit")
 	health -= damage
