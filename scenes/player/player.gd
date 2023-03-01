@@ -111,6 +111,7 @@ func _unhandled_input(event):
 		bite.bite()
 	
 	if event.is_action_pressed("dash") and can_dash and Data.dash_enabled:
+		enable_crash_hitbox()
 		dash_audio.play()
 		can_dash = false
 		animations.play("dash")
@@ -164,6 +165,7 @@ func _process(delta):
 	if dashing:
 		dash_ticker += delta
 		if dash_ticker > DASH_DURATION:
+			disable_crash_hitbox()
 			dashing = false
 			dash_particles.emitting = false
 	
@@ -311,6 +313,14 @@ func _on_animation_player_animation_started(anim_name):
 	if anim_name != "down" and crouching:
 		reset_after_crouch()
 
+func disable_crash_hitbox():
+	crash_hitbox.monitorable = false
+	crash_hitbox.monitoring = false
+
+func enable_crash_hitbox():
+	crash_hitbox.monitorable = true
+	crash_hitbox.monitoring = true
+
 func get_stunned():
 	dashing = false
 	dash_particles.emitting = false
@@ -327,6 +337,7 @@ func break_entities():
 	var entities = dash_hitbox.get_overlapping_areas()
 	for entity in entities:
 		if entity.has_method("break_object"):
+			disable_crash_hitbox()
 			var should_stun = entity.break_object()
 			if should_stun:
 				get_stunned()
@@ -335,4 +346,5 @@ func crash_against_wall():
 	var bodies = crash_hitbox.get_overlapping_bodies()
 	# there is always 1 body inside (player)
 	if bodies.any(func(x) -> bool: return x is TileMap):
+		disable_crash_hitbox()
 		get_stunned()

@@ -352,7 +352,9 @@ shape = SubResource("RectangleShape2D_lb8pc")
 debug_color = Color(0.439216, 0.490196, 0.0196078, 0.419608)
 
 [node name="CrashHitbox" type="Area2D" parent="."]
-position = Vector2(5, -8)
+position = Vector2(3, -8)
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrashHitbox"]
 shape = SubResource("RectangleShape2D_gigk7")

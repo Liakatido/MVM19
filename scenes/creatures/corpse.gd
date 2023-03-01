@@ -36,7 +36,8 @@ func get_eaten(_damage):
 	match kind:
 		Kind.NORMAL:
 			# heal, refill some ammo
-			pass
+			Data.health += 20
+			Data.ammo += 1
 	
 	destroy()
 

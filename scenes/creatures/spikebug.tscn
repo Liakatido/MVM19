@@ -1,15 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://da5vfq0yjp30b"]
+[gd_scene load_steps=8 format=3 uid="uid://da5vfq0yjp30b"]
 
 [ext_resource type="PackedScene" uid="uid://bgj7arkqm4aa6" path="res://scenes/creatures/enemy.tscn" id="1_qabwb"]
 [ext_resource type="Script" path="res://scenes/creatures/spikebug.gd" id="2_d7kfj"]
+[ext_resource type="Texture2D" uid="uid://cokbgjpwvjm5m" path="res://assets/creatures/spikebug.png" id="2_qf66g"]
+[ext_resource type="PackedScene" uid="uid://t0raixkbvbm1" path="res://scenes/creatures/damage_area.tscn" id="4_xwmbk"]
+
+[sub_resource type="Animation" id="Animation_7w0ln"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 16, 16), Rect2(16, 0, 16, 16), Rect2(32, 0, 16, 16), Rect2(48, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_ynh4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7n24"]
+_data = {
+"RESET": SubResource("Animation_ynh4x"),
+"walk": SubResource("Animation_7w0ln")
+}
 
 [node name="Spikebug" instance=ExtResource("1_qabwb")]
+corpse_path = "res://scenes/creatures/spikebug-corpse.tscn"
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("2_qf66g")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -4)
+scale = Vector2(0.781701, -0.241785)
+
+[node name="Hitbox" parent="." index="2"]
+position = Vector2(0, -5)
+scale = Vector2(0.984163, 0.323941)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+scale = Vector2(0.987406, 0.96)
 
 [node name="AI" type="Node2D" parent="." index="4"]
 script = ExtResource("2_d7kfj")
 
 [node name="Down" type="Node2D" parent="AI" index="0"]
 unique_name_in_owner = true
+position = Vector2(0, -17)
 
 [node name="RayCast2D" type="RayCast2D" parent="AI/Down" index="0"]
 position = Vector2(-8, 15)
@@ -21,7 +80,8 @@ target_position = Vector2(0, 6)
 
 [node name="Sides" type="Node2D" parent="AI" index="1"]
 unique_name_in_owner = true
-position = Vector2(0, 11)
+position = Vector2(0, -5)
+scale = Vector2(1.00561, 0.982906)
 
 [node name="RayCast2D" type="RayCast2D" parent="AI/Sides" index="0"]
 position = Vector2(-3, 0)
@@ -32,3 +92,14 @@ target_position = Vector2(0, 7)
 position = Vector2(3, 0)
 rotation = -1.5708
 target_position = Vector2(0, 7)
+
+[node name="MovementAnimations" type="AnimationPlayer" parent="." index="5"]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_c7n24")
+}
+
+[node name="DamageArea" parent="." index="6" instance=ExtResource("4_xwmbk")]
+position = Vector2(0, -5)
+scale = Vector2(0.257143, 0.486555)
+damage = 20

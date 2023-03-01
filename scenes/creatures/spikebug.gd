@@ -3,7 +3,7 @@ extends Node2D
 @onready var sides = %Sides
 @onready var down = %Down
 
-const SPEED = 30.0
+const SPEED = 20.0
 const GRAVITY = 100.0
 
 var down_raycasts : Array[RayCast2D]
@@ -18,6 +18,7 @@ func _ready():
 		down_raycasts.append(ray)
 	for ray in sides.get_children():
 		sides_raycasts.append(ray)
+	body.get_node("MovementAnimations").play("walk")
 
 func _physics_process(delta):
 	# apply gravity
@@ -27,9 +28,10 @@ func _physics_process(delta):
 	# check if should change orientation
 	if is_about_to_fall() or is_about_to_hit_wall():
 		orientation *= -1
+		body.get_node("Sprite2D").flip_h = orientation == Vector2.LEFT
 	
 	# move body
-	body.velocity = orientation*SPEED
+	body.velocity.x = orientation.x*SPEED
 	body.move_and_slide()
 
 func is_about_to_fall() -> bool:
