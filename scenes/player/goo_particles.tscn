@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqg1ib67p4wgj"]
+
+[ext_resource type="Script" path="res://scenes/player/goo_particles.gd" id="1_uvpry"]
+
+[sub_resource type="Curve" id="Curve_8j0oq"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="GooParticles" type="CPUParticles2D"]
+emitting = false
+amount = 16
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+radial_accel_min = 20.0
+radial_accel_max = 20.0
+damping_min = 20.0
+damping_max = 30.0
+scale_amount_curve = SubResource("Curve_8j0oq")
+color = Color(0.313726, 0.964706, 0.454902, 1)
+script = ExtResource("1_uvpry")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
