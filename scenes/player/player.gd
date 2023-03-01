@@ -21,6 +21,7 @@ const HurtSound = preload("res://assets/sounds/player/hurt.ogg")
 @onready var attack_marker = $AttackMarker
 @onready var dust_particles = $DustParticles
 @onready var dash_hitbox = $ChargeHitbox
+@onready var crash_hitbox = $CrashHitbox
 @onready var hitbox = $Hitbox
 
 const SPEED = 85.0
@@ -33,6 +34,11 @@ const RIGHT = 1
 var orientation : Vector2 = Vector2.RIGHT
 var disabled : bool = false
 var was_on_floor : bool = true
+
+var stunned : bool = false
+const STUN_DURATION = 0.4 # seconds
+var stun_ticker : float
+var stun_velocity : Vector2
 
 # invicibility data
 var invincible : bool = false
@@ -55,6 +61,7 @@ var dashing : bool = false
 var can_dash : bool = false
 var dash_ticker : float
 var dash_hitbox_pos : Vector2
+var crash_hitbox_pos : Vector2
 
 # spit data
 const SPIT_COOLDOWN = 2.0
@@ -77,6 +84,8 @@ func _ready():
 	
 	# setup dash data
 	dash_hitbox_pos = dash_hitbox.position
+	crash_hitbox_pos = crash_hitbox.position
+	print(crash_hitbox_pos)
 	
 	# connect signals
 	hitbox.connect("got_hit", get_hit)
@@ -137,6 +146,13 @@ func _process(delta):
 			invincible_ticker = 0
 			end_invincibility()
 	
+	# handle stunned duration
+	if stunned:
+		stun_ticker += delta
+		if stun_ticker >= STUN_DURATION:
+			stunned = false
+			stun_ticker = 0
+	
 	# handle attack cooldown
 	if not can_attack:
 		attack_ticker += delta
@@ -171,6 +187,16 @@ func _physics_process(delta):
 	if disabled:
 		return
 	
+	# will move in the stun velocity/direction until its finished
+	if stunned:
+		# set stun velocity only once
+		if stun_velocity != Vector2.ZERO:
+			velocity = stun_velocity
+			stun_velocity = Vector2.ZERO
+		velocity.y += GRAVITY * delta # gravity should still apply
+		move_and_slide()
+		return
+	
 	# handle dash
 	if dashing:
 		break_entities()
@@ -196,13 +222,15 @@ func _physics_process(delta):
 		sprite.flip_h = true
 		attack_marker.position.x = -attack_marker_x
 		dash_particles.texture = DashTextureLeft
-		dash_hitbox.position = dash_hitbox_pos * Vector2(-1, 0)
+		dash_hitbox.position = dash_hitbox_pos * Vector2(-1, 1)
+		crash_hitbox.position = crash_hitbox_pos * Vector2(-1, 1)
 	if direction == RIGHT:
 		sprite.flip_h = false
 		attack_marker.position.x = attack_marker_x
 		orientation = Vector2.RIGHT
 		dash_particles.texture = DashTextureRight
 		dash_hitbox.position = dash_hitbox_pos
+		crash_hitbox.position = crash_hitbox_pos
 	
 	# handle horizontal movement
 	if direction:
@@ -283,9 +311,27 @@ func _on_animation_player_animation_started(anim_name):
 	if anim_name != "down" and crouching:
 		reset_after_crouch()
 
+func get_stunned():
+	dashing = false
+	dash_particles.emitting = false
+	
+	invincible = true
+	stunned = true
+	var x_speed = 40
+	var y_speed = 100
+	stun_velocity = Vector2(-orientation.x*x_speed, -y_speed)
 
+# break object returns a bool that indicates if player should be stunned after
+# breaking something (e.g on some enemies breakable parts)
 func break_entities():
 	var entities = dash_hitbox.get_overlapping_areas()
 	for entity in entities:
 		if entity.has_method("break_object"):
-			entity.break_object()
+			var should_stun = entity.break_object()
+			if should_stun:
+				get_stunned()
+
+
+func _on_crash_hitbox_body_entered(body):
+	if dashing:
+		get_stunned()
