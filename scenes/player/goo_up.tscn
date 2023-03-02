@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://y411pk4a1t4h"]
 
 [ext_resource type="Texture2D" uid="uid://cah4evg6ueolx" path="res://assets/tileset.png" id="1_kl5de"]
 [ext_resource type="Script" path="res://scenes/player/goo.gd" id="1_ty101"]

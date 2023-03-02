@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dy2gbkapxxpro"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_krexb"]
-[ext_resource type="TileSet" uid="uid://07ih54c4gmpd" path="res://scenes/levels/tilesets/cave_tileset.tres" id="2_xw61w"]
+[ext_resource type="TileSet" uid="uid://bse03qav5cch5" path="res://scenes/levels/tilesets/cave_tileset.tres" id="2_xw61w"]
 [ext_resource type="PackedScene" uid="uid://wlibgfi11p7" path="res://scenes/levels/parallax_background.tscn" id="3_s5vqt"]
 
 [node name="BaseLevel" type="Node2D"]

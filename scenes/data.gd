@@ -29,6 +29,21 @@ func set_stats_from_last_save():
 	dash_enabled = last_save.dash_enabled
 	spit_enabled = last_save.spit_enabled
 
+func save(level : String, gate : String):
+	var new_save = SaveState.new()
+	new_save.health = health
+	new_save.max_health = max_health
+	new_save.ammo = ammo
+	new_save.max_ammo = max_ammo
+	new_save.gate = gate
+	new_save.level = level
+	
+	new_save.dash_enabled = dash_enabled
+	new_save.spit_enabled = spit_enabled
+	new_save.tail_enabled = tail_enabled
+	
+	last_save = new_save
+
 func _set_max_health(value):
 	max_health = value
 	health = max_health
