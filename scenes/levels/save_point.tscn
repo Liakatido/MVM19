@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://daxp300dp6r3n"]
+[gd_scene load_steps=7 format=3 uid="uid://daxp300dp6r3n"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_gate.gd" id="1_8lu7b"]
 [ext_resource type="Script" path="res://scenes/levels/save_point.gd" id="1_a8a00"]
 [ext_resource type="Texture2D" uid="uid://cjnp3ejsr0jqm" path="res://assets/nest.png" id="1_r1a0l"]
+[ext_resource type="Texture2D" uid="uid://ddbfbefqt0nrs" path="res://assets/eletter.png" id="4_gt3yr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elx23"]
 size = Vector2(14, 28)
@@ -26,9 +27,41 @@ texture = ExtResource("1_r1a0l")
 position = Vector2(0, -3)
 
 [node name="SaveArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_a8a00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaveArea"]
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_af32f")
 debug_color = Color(1, 0.592157, 0, 0.439216)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SaveArea"]
+visible = false
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -35.0
+offset_right = 25.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="SaveArea/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Press"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="SaveArea/HBoxContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_gt3yr")
+stretch_mode = 2
