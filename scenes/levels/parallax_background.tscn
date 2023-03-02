@@ -12,6 +12,6 @@ motion_mirroring = Vector2(1, 1)
 modulate = Color(0.560784, 0.682353, 0.690196, 1)
 texture_repeat = 2
 offset_right = 964.0
-offset_bottom = 510.0
+offset_bottom = 922.0
 texture = ExtResource("1_mp752")
 stretch_mode = 1
