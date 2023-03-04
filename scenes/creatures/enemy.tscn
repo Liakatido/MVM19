@@ -5,10 +5,12 @@
 [ext_resource type="Script" path="res://scenes/player/hitbox.gd" id="3_1xfts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bw8u"]
-size = Vector2(12, 30)
+resource_local_to_scene = true
+size = Vector2(17.9097, 28.9513)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xyia"]
-size = Vector2(16, 32)
+resource_local_to_scene = true
+size = Vector2(16, 15)
 
 [sub_resource type="Animation" id="Animation_kydi0"]
 length = 0.001

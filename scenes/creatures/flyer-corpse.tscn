@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://i8d5xle8cpil"]
+
+[ext_resource type="PackedScene" uid="uid://c6u78mmi0puws" path="res://scenes/creatures/corpse.tscn" id="1_52j45"]
+[ext_resource type="Texture2D" uid="uid://byq1lwfybp8jt" path="res://assets/flyer-corpse.png" id="2_83aej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvh1w"]
+resource_local_to_scene = true
+size = Vector2(19.5, 22.25)
+
+[node name="Corpse" instance=ExtResource("1_52j45")]
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -9)
+texture = ExtResource("2_83aej")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -6.125)
+shape = SubResource("RectangleShape2D_jvh1w")

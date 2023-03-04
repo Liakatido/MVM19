@@ -11,6 +11,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.584314)
 size = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o5bi"]
+resource_local_to_scene = true
 size = Vector2(19.5, 12.5)
 
 [node name="Corpse" type="CharacterBody2D"]
