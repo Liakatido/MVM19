@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd8l3nify8mfu"]
+[gd_scene load_steps=9 format=3 uid="uid://bd8l3nify8mfu"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_e5lny"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_dfde7"]
 [ext_resource type="PackedScene" uid="uid://euanwexm70yw" path="res://scenes/creatures/lightbug.tscn" id="3_830w8"]
 [ext_resource type="PackedScene" uid="uid://daxp300dp6r3n" path="res://scenes/levels/save_point.tscn" id="3_xqmox"]
-[ext_resource type="PackedScene" uid="uid://da5vfq0yjp30b" path="res://scenes/creatures/spikebug.tscn" id="4_1syge"]
+[ext_resource type="PackedScene" uid="uid://crs8jcearxo20" path="res://scenes/creatures/ammoer.tscn" id="6_h5rgj"]
+[ext_resource type="PackedScene" uid="uid://b2ruls1fn44k5" path="res://scenes/creatures/flyer.tscn" id="6_nunri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3pt7"]
+resource_local_to_scene = true
+size = Vector2(17.9097, 28.9513)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5655m"]
+resource_local_to_scene = true
+size = Vector2(16, 15)
 
 [node name="caveSelfLair" instance=ExtResource("1_e5lny")]
 
@@ -47,8 +56,21 @@ to_gate = "entry"
 [node name="lightbug" parent="." index="2" instance=ExtResource("3_830w8")]
 position = Vector2(164, 177)
 
-[node name="Spikebug" parent="." index="4" instance=ExtResource("4_1syge")]
-position = Vector2(251, 207)
+[node name="Enemy" parent="." index="4" instance=ExtResource("6_nunri")]
+position = Vector2(187, 93)
+
+[node name="CollisionShape2D" parent="Enemy" index="1"]
+shape = SubResource("RectangleShape2D_s3pt7")
+
+[node name="CollisionShape2D" parent="Enemy/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_5655m")
+
+[node name="Path" parent="Enemy/AI" index="0"]
+points = PackedVector2Array(1, 1, 95, 1)
+
+[node name="Enemy2" parent="." index="5" instance=ExtResource("6_h5rgj")]
+position = Vector2(242, 199)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]
+[editable path="Enemy"]

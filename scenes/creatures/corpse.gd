@@ -38,6 +38,11 @@ func get_eaten(_damage, _direction):
 			# heal, refill some ammo
 			Data.health += 20
 			Data.ammo += 1
+		Kind.MAX_HEALTH:
+			# TODO: pop up some ui?
+			Data.max_health += 20
+		Kind.MAX_AMMO:
+			Data.max_ammo += 1
 	
 	destroy()
 

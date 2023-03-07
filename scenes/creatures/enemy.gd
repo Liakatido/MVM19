@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const HurtAudio = preload("res://assets/sounds/player/mobhurt.ogg")
 
+signal got_hit
+
 @onready var hitbox = $Hitbox
 @onready var animations = $BasicAnimations
 
@@ -26,6 +28,7 @@ func _physics_process(_delta):
 		knockback_trigger = Vector2.ZERO
 	
 func get_hit(damage, direction : Vector2 = Vector2.ZERO):
+	emit_signal("got_hit")
 	Utils.spawn_audio(HurtAudio, -15)
 	
 	if direction != Vector2.ZERO:
