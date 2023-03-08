@@ -25,5 +25,6 @@ position = Vector2(-7.40771, -1.63913e-06)
 
 [node name="Enemy" parent="." index="3" instance=ExtResource("3_jwb8d")]
 position = Vector2(141, 365)
+health = 30
 
 [editable path="Gates/LevelGate"]
