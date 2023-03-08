@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-const GooLeft = preload("res://scenes/player/goo_left.tscn")
-const GooRight = preload("res://scenes/player/goo_right.tscn")
-const GooUp = preload("res://scenes/player/goo_up.tscn")
-const GooDown = preload("res://scenes/player/goo_down.tscn")
+const GooLeft = preload("res://scenes/creatures/toxic_goo_left.tscn")
+const GooRight = preload("res://scenes/creatures/toxic_goo_right.tscn")
+const GooUp = preload("res://scenes/creatures/toxic_goo_up.tscn")
+const GooDown = preload("res://scenes/creatures/toxic_goo_up.tscn")
 
 @onready var sprite = $Sprite2D
 @onready var hitbox = $Hitbox
@@ -102,7 +102,7 @@ func _on_hitbox_body_entered(body):
 		return
 	
 	# dont collide with player or itself
-	if body.is_in_group("player") or body.is_in_group("spit"):
+	if body.is_in_group("enemy") or body.is_in_group("spit"):
 		return
 	
 	if body is TileMap:
