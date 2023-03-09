@@ -79,12 +79,31 @@ knockback_resistance = 100.0
 [node name="Line2D" type="Line2D" parent="." index="0"]
 width = 2.0
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="1"]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+emission_shape = 5
+emission_points = PackedVector2Array(1, 8, -1, 8)
+emission_normals = PackedVector2Array(-1, -1, 1, -1)
+emission_colors = PackedColorArray()
+spread = 25.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 14.0
+initial_velocity_max = 18.0
+damping_min = 5.0
+damping_max = 9.0
+scale_amount_min = 0.4
+scale_amount_max = 0.6
+color = Color(0.92549, 0.6, 0.388235, 1)
+
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_wxgjr")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_7thw0")
 
@@ -92,7 +111,7 @@ shape = SubResource("RectangleShape2D_7thw0")
 position = Vector2(0, 0.875)
 shape = SubResource("RectangleShape2D_2upmr")
 
-[node name="DamageArea" parent="." index="5" instance=ExtResource("3_uaah0")]
+[node name="DamageArea" parent="." index="6" instance=ExtResource("3_uaah0")]
 damage = 20
 
 [node name="CollisionShape2D" parent="DamageArea" index="0"]
@@ -100,12 +119,12 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_uw4hj")
 debug_color = Color(0.6, 0.537255, 0.239216, 0.419608)
 
-[node name="MovementAnimations" type="AnimationPlayer" parent="." index="6"]
+[node name="MovementAnimations" type="AnimationPlayer" parent="." index="7"]
 libraries = {
 "": SubResource("AnimationLibrary_hsir6")
 }
 
-[node name="AI" type="Node2D" parent="." index="7"]
+[node name="AI" type="Node2D" parent="." index="8"]
 script = ExtResource("4_nn56f")
 
 [node name="RayCast2D" type="RayCast2D" parent="AI" index="0"]

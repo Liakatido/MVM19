@@ -14,6 +14,7 @@ const ATTACK_COOLDOWN = 2 # seconds
 var rays : Array[RayCast2D]
 var body : CharacterBody2D
 var animations : AnimationPlayer
+var particles : CPUParticles2D
 var line : Line2D
 var state : State = State.AMBUSH
 var origin_pos : Vector2
@@ -30,6 +31,7 @@ func _ready():
 	body = get_parent()
 	animations = body.get_node("MovementAnimations")
 	line = body.get_node("Line2D")
+	particles = body.get_node("CPUParticles2D")
 	
 	# set line initial points
 	line.add_point(self.global_position)
@@ -74,6 +76,8 @@ func ambush(delta):
 
 func down(_delta):
 	if body.is_on_floor():
+		particles.restart()
+		particles.emitting = true
 		state = State.WAIT
 		return
 	body.velocity.y = SPEED
