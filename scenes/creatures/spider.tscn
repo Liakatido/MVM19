@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctb1y14n2q7gx"]
+
+[ext_resource type="PackedScene" uid="uid://bgj7arkqm4aa6" path="res://scenes/creatures/enemy.tscn" id="1_4d4hq"]
+[ext_resource type="Texture2D" uid="uid://b8j5fd15pi8jq" path="res://assets/creatures/stalactite.png" id="2_wxgjr"]
+[ext_resource type="PackedScene" uid="uid://t0raixkbvbm1" path="res://scenes/creatures/damage_area.tscn" id="3_uaah0"]
+[ext_resource type="Script" path="res://scenes/creatures/spider.gd" id="4_nn56f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7thw0"]
+resource_local_to_scene = true
+size = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2upmr"]
+resource_local_to_scene = true
+size = Vector2(10, 12.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw4hj"]
+resource_local_to_scene = true
+size = Vector2(10, 12)
+
+[sub_resource type="Animation" id="Animation_bf8r5"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(16, 0, 16, 16), Rect2(32, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_b7bcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_4gvkh"]
+resource_name = "hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hsir6"]
+_data = {
+"RESET": SubResource("Animation_b7bcp"),
+"hide": SubResource("Animation_4gvkh"),
+"idle": SubResource("Animation_bf8r5")
+}
+
+[node name="Spider" instance=ExtResource("1_4d4hq")]
+corpse_path = "res://scenes/creatures/spider-corpse.tscn"
+knockback_resistance = 100.0
+
+[node name="Line2D" type="Line2D" parent="." index="0"]
+width = 2.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_wxgjr")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_7thw0")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 0.875)
+shape = SubResource("RectangleShape2D_2upmr")
+
+[node name="DamageArea" parent="." index="5" instance=ExtResource("3_uaah0")]
+damage = 20
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_uw4hj")
+debug_color = Color(0.6, 0.537255, 0.239216, 0.419608)
+
+[node name="MovementAnimations" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_hsir6")
+}
+
+[node name="AI" type="Node2D" parent="." index="7"]
+script = ExtResource("4_nn56f")
+
+[node name="RayCast2D" type="RayCast2D" parent="AI" index="0"]
+position = Vector2(-15, 0)
+target_position = Vector2(0, 500)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast2D2" type="RayCast2D" parent="AI" index="1"]
+position = Vector2(15, 0)
+target_position = Vector2(0, 500)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[editable path="DamageArea"]

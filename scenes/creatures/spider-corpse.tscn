@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://wg2qw0i3uvq7"]
+
+[ext_resource type="PackedScene" uid="uid://c6u78mmi0puws" path="res://scenes/creatures/corpse.tscn" id="1_ogy20"]
+[ext_resource type="Texture2D" uid="uid://cl0m1f4nkf7as" path="res://assets/creatures/stalactite-corpse.png" id="2_sttqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uftqr"]
+resource_local_to_scene = true
+size = Vector2(19.5, 12.5)
+
+[node name="Corpse" instance=ExtResource("1_ogy20")]
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -8)
+texture = ExtResource("2_sttqg")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_uftqr")
