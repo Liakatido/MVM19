@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-const GooLeft = preload("res://scenes/player/goo_left.tscn")
-const GooRight = preload("res://scenes/player/goo_right.tscn")
-const GooUp = preload("res://scenes/player/goo_up.tscn")
-const GooDown = preload("res://scenes/player/goo_down.tscn")
+const GooLeft = preload("res://scenes/creatures/toxic_goo_left.tscn")
+const GooRight = preload("res://scenes/creatures/toxic_goo_right.tscn")
+const GooUp = preload("res://scenes/creatures/toxic_goo_up.tscn")
+const GooDown = preload("res://scenes/creatures/toxic_goo_up.tscn")
 
 @onready var sprite = $Sprite2D
 @onready var hitbox = $Hitbox
 @onready var particles = $CPUParticles2D
 
-@export var DAMAGE = 5
+@export var DAMAGE = 20
 
 const SPEED : float = 200
 const UP_SPEED : float = 100
@@ -102,7 +102,7 @@ func _on_hitbox_body_entered(body):
 		return
 	
 	# dont collide with player or itself
-	if body.is_in_group("player") or body.is_in_group("spit"):
+	if body.is_in_group("enemy") or body.is_in_group("spit"):
 		return
 	
 	if body is TileMap:
@@ -111,5 +111,6 @@ func _on_hitbox_body_entered(body):
 	destroy()
 
 func _on_hitbox_area_entered(area):
-	area.hit(DAMAGE)
-	destroy()
+	if area.has_method("hit"):
+		area.hit(20) # something is changing DAMAGE, hardcoding damage
+		destroy()

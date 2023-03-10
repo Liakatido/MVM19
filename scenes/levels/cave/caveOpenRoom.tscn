@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhgbi64doeqv"]
+[gd_scene load_steps=4 format=3 uid="uid://dhgbi64doeqv"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_jk2nx"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_pv4rp"]
+[ext_resource type="PackedScene" uid="uid://djigmi7crq3kp" path="res://scenes/creatures/charger.tscn" id="3_1hjw7"]
 
 [node name="caveSelfLair" instance=ExtResource("1_jk2nx")]
 
@@ -54,6 +55,9 @@ position = Vector2(21.4824, -6.7282)
 
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(5.18544, 0.448549)
+
+[node name="Charger" parent="." index="3" instance=ExtResource("3_1hjw7")]
+position = Vector2(627, 344)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]

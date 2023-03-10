@@ -184,6 +184,8 @@ func _process(delta):
 			can_spit = true
 
 func _physics_process(delta):
+	Data.player_position = global_position
+	
 	check_floor()
 	if disabled:
 		return

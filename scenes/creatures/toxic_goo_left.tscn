@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsqcsft40caww"]
+
+[ext_resource type="Script" path="res://scenes/creatures/toxic_goo.gd" id="1_571dw"]
+[ext_resource type="Texture2D" uid="uid://d3pf3iuv36t3u" path="res://assets/creatures/goospike.png" id="2_xwcn3"]
+[ext_resource type="Script" path="res://scenes/player/hitbox.gd" id="3_dmtj5"]
+[ext_resource type="PackedScene" uid="uid://t0raixkbvbm1" path="res://scenes/creatures/damage_area.tscn" id="4_q4t0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oskr5"]
+size = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kucnw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6432l"]
+resource_local_to_scene = true
+size = Vector2(20, 21)
+
+[node name="ToxicGooLeft" type="StaticBody2D"]
+script = ExtResource("1_571dw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xwcn3")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oskr5")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitoring = false
+script = ExtResource("3_dmtj5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_kucnw")
+
+[node name="DamageArea" parent="." instance=ExtResource("4_q4t0a")]
+damage = 20
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6432l")
+debug_color = Color(0.862745, 0.345098, 0.298039, 0.419608)
+
+[editable path="DamageArea"]

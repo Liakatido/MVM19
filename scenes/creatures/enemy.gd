@@ -40,7 +40,7 @@ func get_hit(damage, direction : Vector2 = Vector2.ZERO):
 		get_destroyed()
 
 func knockback(direction : Vector2):
-	knockback_trigger = KNOCKBACK*direction
+	knockback_trigger = (KNOCKBACK - knockback_resistance*KNOCKBACK/100)*direction
 
 func get_destroyed():
 	var corpse = load(corpse_path).instantiate()

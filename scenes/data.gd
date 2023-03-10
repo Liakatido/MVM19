@@ -13,6 +13,8 @@ var health : int = 100 : set = _set_health
 var ammo : int = 4 : set = _set_ammo
 var max_ammo : int = 4 : set = _set_max_ammo
 
+var player_position : Vector2
+
 var tail_enabled : bool
 var dash_enabled : bool
 var spit_enabled : bool

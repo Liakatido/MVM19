@@ -13,6 +13,21 @@ size = Vector2(17.9097, 28.9513)
 resource_local_to_scene = true
 size = Vector2(16, 15)
 
+[sub_resource type="Animation" id="Animation_238m0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 24, 24)]
+}
+
 [sub_resource type="Animation" id="Animation_x273e"]
 resource_name = "idle"
 length = 0.8
@@ -28,21 +43,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Rect2(0, 0, 24, 24), Rect2(24, 0, 24, 24), Rect2(48, 0, 24, 24), Rect2(72, 0, 24, 24)]
-}
-
-[sub_resource type="Animation" id="Animation_238m0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 24, 24)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tw4me"]

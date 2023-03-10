@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/creatures/damage_area.gd" id="1_obo1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kt618"]
+resource_local_to_scene = true
 size = Vector2(57, 20)
 
 [node name="DamageArea" type="Area2D"]
