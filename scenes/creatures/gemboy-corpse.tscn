@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5qmy7bmip4o5"]
+
+[ext_resource type="PackedScene" uid="uid://c6u78mmi0puws" path="res://scenes/creatures/corpse.tscn" id="1_aok8u"]
+[ext_resource type="Texture2D" uid="uid://3kamb28hfvvu" path="res://assets/creatures/gemboy-corpse.png" id="2_vn6yi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcpem"]
+resource_local_to_scene = true
+size = Vector2(19.5, 12.5)
+
+[node name="GemboyCorpse" instance=ExtResource("1_aok8u")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_vn6yi")
+
+[node name="Hitbox" parent="." index="3"]
+position = Vector2(0, 5)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_kcpem")

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://virgrmneidqx"]
+
+[ext_resource type="Texture2D" uid="uid://cslperrwjar43" path="res://assets/creatures/gem.png" id="1_028nd"]
+[ext_resource type="Script" path="res://scenes/creatures/gem.gd" id="1_oxd0m"]
+[ext_resource type="PackedScene" uid="uid://t0raixkbvbm1" path="res://scenes/creatures/damage_area.tscn" id="2_vppkx"]
+
+[sub_resource type="Gradient" id="Gradient_34laq"]
+offsets = PackedFloat32Array(0.0264901, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.458824)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsned"]
+size = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8811r"]
+resource_local_to_scene = true
+size = Vector2(6, 6)
+
+[node name="Gem" type="CharacterBody2D"]
+script = ExtResource("1_oxd0m")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 24
+speed_scale = 2.0
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+color = Color(0.870588, 0.152941, 1, 1)
+color_ramp = SubResource("Gradient_34laq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xsned")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_028nd")
+
+[node name="DamageArea" parent="." instance=ExtResource("2_vppkx")]
+damage = 20
+one_time = true
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource("RectangleShape2D_8811r")
+
+[editable path="DamageArea"]
