@@ -15,10 +15,12 @@ const SPEED : float = 200
 const UP_SPEED : float = 100
 const GRAVITY : float = 220
 
+var speed : float
 var disabled = false
 var shooting_direction = Vector2(1, -0.5)
 
 func _ready():
+	speed = SPEED
 	velocity.y = shooting_direction.y * UP_SPEED
 	var tween = create_tween()
 	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.15).from(Vector2.ZERO)
@@ -28,12 +30,20 @@ func _physics_process(delta):
 	if disabled:
 		return
 	velocity.y += GRAVITY * delta
-	velocity.x = shooting_direction.x * SPEED
+	velocity.x = shooting_direction.x * speed
 	move_and_slide()
 
 func set_orientation(orientation : Vector2):
 	if orientation == Vector2.LEFT:
 		shooting_direction.x = -1
+
+func set_spread(spread_s : float, spread_h : float):
+	speed = randf_range(SPEED-(spread_s*3), SPEED+(spread_s/4))
+	shooting_direction.y += randf_range(-0.5-(spread_h/4), -0.5+(spread_h*3))
+	velocity.y = shooting_direction.y * UP_SPEED
+	print(speed)
+	print(shooting_direction.y)
+	print()
 
 func get_goo_scene(direction : Vector2) -> PackedScene:
 	match direction:

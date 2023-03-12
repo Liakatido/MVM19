@@ -3,6 +3,7 @@ extends CharacterBody2D
 const HurtAudio = preload("res://assets/sounds/player/mobhurt.ogg")
 
 signal got_hit
+signal destroyed
 
 @onready var hitbox = $Hitbox
 @onready var animations = $BasicAnimations
@@ -43,6 +44,7 @@ func knockback(direction : Vector2):
 	knockback_trigger = (KNOCKBACK - knockback_resistance*KNOCKBACK/100)*direction
 
 func get_destroyed():
+	emit_signal("destroyed")
 	var corpse = load(corpse_path).instantiate()
 	get_parent().add_child(corpse)
 	corpse.global_position = global_position

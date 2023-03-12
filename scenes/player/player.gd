@@ -76,6 +76,7 @@ var crouch_sprite_pos : Vector2
 
 
 func _ready():
+	Utils.camera = get_node("Camera2D")
 	attack_marker_x = attack_marker.position.x
 	
 	# setup crouch data

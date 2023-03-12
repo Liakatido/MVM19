@@ -15,10 +15,12 @@ const SPEED : float = 200
 const UP_SPEED : float = 100
 const GRAVITY : float = 220
 
+var speed : float
 var disabled = false
 var shooting_direction = Vector2(1, -0.5)
 
 func _ready():
+	speed = SPEED
 	velocity.y = shooting_direction.y * UP_SPEED
 	var tween = create_tween()
 	tween.tween_property(sprite, "scale", Vector2(1, 1), 0.15).from(Vector2.ZERO)
@@ -28,7 +30,7 @@ func _physics_process(delta):
 	if disabled:
 		return
 	velocity.y += GRAVITY * delta
-	velocity.x = shooting_direction.x * SPEED
+	velocity.x = shooting_direction.x * speed
 	move_and_slide()
 
 func set_orientation(orientation : Vector2):
@@ -111,5 +113,6 @@ func _on_hitbox_body_entered(body):
 	destroy()
 
 func _on_hitbox_area_entered(area):
-	area.hit(DAMAGE)
-	destroy()
+	if area.has_method("hit"):
+		area.hit(DAMAGE)
+		destroy()

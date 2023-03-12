@@ -12,9 +12,8 @@ size = Vector2(6.95485, 6.47565)
 resource_local_to_scene = true
 size = Vector2(16, 20.5)
 
-[sub_resource type="Animation" id="Animation_dg6o0"]
-resource_name = "idle"
-length = 0.1
+[sub_resource type="Animation" id="Animation_aa3up"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,8 +27,25 @@ tracks/0/keys = {
 "values": [Rect2(0, 0, 32, 32)]
 }
 
-[sub_resource type="Animation" id="Animation_aa3up"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_8kkfg"]
+resource_name = "attack"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(32, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_dg6o0"]
+resource_name = "idle"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,22 +75,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(128, 0, 32, 32), Rect2(160, 0, 32, 32)]
-}
-
-[sub_resource type="Animation" id="Animation_8kkfg"]
-resource_name = "attack"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(32, 0, 32, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fwsjw"]

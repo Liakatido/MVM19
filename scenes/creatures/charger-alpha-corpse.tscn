@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq3moycgs7sqf"]
+
+[ext_resource type="PackedScene" uid="uid://c6u78mmi0puws" path="res://scenes/creatures/corpse.tscn" id="1_qtv0x"]
+[ext_resource type="Texture2D" uid="uid://b3cew4hddlwv8" path="res://assets/charger-alpha-corpse.png" id="2_5bfu4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1cxo"]
+resource_local_to_scene = true
+size = Vector2(43.875, 11.625)
+
+[node name="ChargerAlphaCorpse" instance=ExtResource("1_qtv0x")]
+kind = 1
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(1, -32)
+texture = ExtResource("2_5bfu4")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-2, -7)
+shape = SubResource("RectangleShape2D_b1cxo")

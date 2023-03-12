@@ -41,6 +41,8 @@ func load_game():
 	save_state.tail_enabled = true
 	save_state.spit_enabled = true
 	save_state.dash_enabled = true
+	#save_state.level = "res://scenes/levels/cave/caveBossTest.tscn"
+	#save_state.gate = "bossTest"
 	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
 	save_state.gate = "safeCave"
 	Data.last_save = save_state

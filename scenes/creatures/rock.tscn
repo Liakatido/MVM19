@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqokf8qx5hv4w"]
+
+[ext_resource type="Texture2D" uid="uid://r8cupxq75v11" path="res://assets/creatures/rock.png" id="1_sk1jn"]
+[ext_resource type="Script" path="res://scenes/creatures/rock.gd" id="2_alygp"]
+[ext_resource type="PackedScene" uid="uid://t0raixkbvbm1" path="res://scenes/creatures/damage_area.tscn" id="2_be4yw"]
+[ext_resource type="Texture2D" uid="uid://cqiksaji3x2wf" path="res://assets/particles/dust.png" id="3_p6ob6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx1ry"]
+resource_local_to_scene = true
+size = Vector2(15, 18)
+
+[sub_resource type="Curve" id="Curve_8pina"]
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.501941, 0, 1, Vector2(0.978022, 1.49091), 0.501941, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_58bl7"]
+colors = PackedColorArray(1, 1, 1, 0.65098, 1, 1, 1, 0)
+
+[node name="Rock" type="Sprite2D"]
+texture = ExtResource("1_sk1jn")
+offset = Vector2(2, 0)
+script = ExtResource("2_alygp")
+
+[node name="DamageArea" parent="." instance=ExtResource("2_be4yw")]
+damage = 20
+one_time = true
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_dx1ry")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+amount = 30
+lifetime = 1.4
+speed_scale = 2.0
+randomness = 0.2
+texture = ExtResource("3_p6ob6")
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector2(0, 0)
+angle_max = 90.0
+scale_amount_min = 1.4
+scale_amount_max = 1.6
+scale_amount_curve = SubResource("Curve_8pina")
+color_ramp = SubResource("Gradient_58bl7")
+
+[editable path="DamageArea"]
