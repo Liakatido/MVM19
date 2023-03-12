@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cor3xlgyme82s"]
+[gd_scene load_steps=4 format=3 uid="uid://cor3xlgyme82s"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_q3w54"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_20khs"]
+[ext_resource type="PackedScene" uid="uid://cd8fmt33mxh0g" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_nl5cw"]
 
 [node name="caveSelfLair" instance=ExtResource("1_q3w54")]
 
@@ -51,6 +52,8 @@ position = Vector2(13.89, -9.89448)
 
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(-4.08541, 0.942332)
+
+[node name="ParallaxBackground2" parent="." index="3" instance=ExtResource("3_nl5cw")]
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]

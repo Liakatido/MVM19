@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqvcuyosxss4y"]
+[gd_scene load_steps=5 format=3 uid="uid://bqvcuyosxss4y"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_5n2cy"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_g37gc"]
+[ext_resource type="PackedScene" uid="uid://da5vfq0yjp30b" path="res://scenes/creatures/spikebug.tscn" id="3_tdkkr"]
+[ext_resource type="PackedScene" path="res://scenes/creatures/gemboy.tscn" id="4_vyr34"]
 
 [node name="caveSelfLair" instance=ExtResource("1_5n2cy")]
 
@@ -69,6 +71,18 @@ scale = Vector2(1.84167, 0.351356)
 
 [node name="Marker2D" parent="Gates/LevelGate4" index="1"]
 position = Vector2(-16.8253, 11.3466)
+
+[node name="Spikebug" parent="." index="3" instance=ExtResource("3_tdkkr")]
+position = Vector2(246, 461)
+
+[node name="Spikebug2" parent="." index="4" instance=ExtResource("3_tdkkr")]
+position = Vector2(131, 334)
+
+[node name="Spikebug3" parent="." index="5" instance=ExtResource("3_tdkkr")]
+position = Vector2(416, 510)
+
+[node name="Gemboy" parent="." index="6" instance=ExtResource("4_vyr34")]
+position = Vector2(285, 560)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]

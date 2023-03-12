@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd8fmt33mxh0g"]
+
+[ext_resource type="Texture2D" uid="uid://byus35d12q1gk" path="res://assets/backgrounds/mushroom1.png" id="1_8gani"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_base_scale = Vector2(0.1, 0.1)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="Sprite2D" type="TextureRect" parent="ParallaxLayer"]
+modulate = Color(0.345098, 0.239216, 0.239216, 1)
+texture_repeat = 2
+offset_right = 964.0
+offset_bottom = 922.0
+texture = ExtResource("1_8gani")
+stretch_mode = 1
