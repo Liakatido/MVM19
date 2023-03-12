@@ -13,6 +13,6 @@ signal player_entered_gate(to_level, to_gate)
 func get_spawn_pos() -> Vector2:
 	return spawn_pos.global_position
 
-func _on_area_entered(_area):
-	if active:
+func _on_area_entered(area):
+	if active && area.is_in_group("player") :
 		emit_signal("player_entered_gate", to_level, to_gate)
