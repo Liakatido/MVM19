@@ -24,7 +24,10 @@ func _ready():
 
 func _physics_process(_delta):
 	if knockback_trigger != Vector2.ZERO:
-		velocity += knockback_trigger
+		if velocity.x == 0:
+			velocity += knockback_trigger
+		else:
+			velocity += knockback_trigger/3
 		move_and_slide()
 		knockback_trigger = Vector2.ZERO
 	

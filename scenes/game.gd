@@ -70,12 +70,13 @@ func reload_menu():
 func exit_game():
 	get_tree().quit()
 
-func spawn_audio(sound, db : float = 0):
+func spawn_audio(sound, db : float = 0, pitch : float = 1.0):
 	var audio_to_spawn = AudioStreamPlayer.new()
 	add_child(audio_to_spawn)
 	
 	audio_to_spawn.stream = sound
 	audio_to_spawn.volume_db = db
+	audio_to_spawn.pitch_scale = pitch
 	audio_to_spawn.process_mode = Node.PROCESS_MODE_ALWAYS
 	audio_to_spawn.connect("finished", audio_to_spawn.queue_free)
 	audio_to_spawn.play()

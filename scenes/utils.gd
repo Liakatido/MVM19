@@ -31,8 +31,8 @@ func _shake(strength : int = DEFAULT_STRENGTH):
 	tween.tween_property(camera, "position", camera_origin, 0.1).from(camera_shake)
 	tween.tween_property(camera, "position", camera_origin, 0.05).from(inv_camera_shake)
 
-func spawn_audio(sound, db):
-	game.spawn_audio(sound, db)
+func spawn_audio(sound, db, pitch=1.0):
+	game.spawn_audio(sound, db, pitch)
 
 func flash_screen():
 	flash_ui.flash_screen()

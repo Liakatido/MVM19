@@ -23,5 +23,10 @@ func shoot(direction : Vector2, speed : float, g : float):
 	gravity = g
 	moving = true
 
+func shoot_v2(v : Vector2, g : float):
+	velocity = v
+	gravity = g
+	moving = true
+
 func destroy():
 	queue_free()
