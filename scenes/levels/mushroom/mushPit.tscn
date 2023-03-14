@@ -36,9 +36,9 @@ position = Vector2(14.0747, 4.03692)
 [node name="LevelGate2" parent="Gates" instance=ExtResource("2_pioi3")]
 position = Vector2(18, 415)
 scale = Vector2(1.2239, 2.1224)
-gate_id = "selfLairRight"
-to_level = "res://scenes/levels/cave/caveSmallRoom.tscn"
-to_gate = "smallLeft"
+gate_id = "pitBonus"
+to_level = "res://scenes/levels/mushroom/mushBonus.tscn"
+to_gate = "mushBonus"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
 position = Vector2(-16.3412, -13.6638)
