@@ -10,6 +10,7 @@ signal destroyed
 
 @export var corpse_path : String
 @export var health = 30
+@export var flag : String
 @export var knockback_resistance : float
 
 const SPEED = 300.0
@@ -20,6 +21,9 @@ const KNOCKBACK = 500.0
 var knockback_trigger : Vector2
 
 func _ready():
+	if flag != "" and Data.flags.has(flag) and Data.flags[flag]:
+		queue_free()
+		return
 	hitbox.connect("got_hit", get_hit)
 
 func _physics_process(_delta):
@@ -47,6 +51,8 @@ func knockback(direction : Vector2):
 	knockback_trigger = (KNOCKBACK - knockback_resistance*KNOCKBACK/100)*direction
 
 func get_destroyed():
+	if flag != "":
+		Data.flags[flag] = true
 	emit_signal("destroyed")
 	var corpse = load(corpse_path).instantiate()
 	get_parent().add_child(corpse)

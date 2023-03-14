@@ -19,6 +19,8 @@ var tail_enabled : bool
 var dash_enabled : bool
 var spit_enabled : bool
 
+var flags : Dictionary
+
 var last_save : SaveState
 
 func set_stats_from_last_save():
@@ -30,6 +32,8 @@ func set_stats_from_last_save():
 	tail_enabled = last_save.tail_enabled
 	dash_enabled = last_save.dash_enabled
 	spit_enabled = last_save.spit_enabled
+	
+	flags = last_save.flags
 
 func save(level : String, gate : String):
 	var new_save = SaveState.new()
@@ -43,6 +47,8 @@ func save(level : String, gate : String):
 	new_save.dash_enabled = dash_enabled
 	new_save.spit_enabled = spit_enabled
 	new_save.tail_enabled = tail_enabled
+	
+	new_save.flags = flags
 	
 	last_save = new_save
 
@@ -88,4 +94,5 @@ class SaveState:
 	var spit_enabled : bool
 	var tail_enabled : bool
 	
-	
+	# enemy flags
+	var flags : Dictionary
