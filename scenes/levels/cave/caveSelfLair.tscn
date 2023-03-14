@@ -53,7 +53,7 @@ position = Vector2(-39.2189, -24.5006)
 [node name="SavePoint" parent="Gates" index="3" instance=ExtResource("3_xqmox")]
 position = Vector2(80, 224)
 gate_id = "safeCave"
-to_level = "res://scenes/levels/test/test_2.tscn"
+to_level = "res://scenes/levels/cave/caveSelfLair.tscn"
 to_gate = "entry"
 
 [node name="lightbug" parent="." index="2" instance=ExtResource("3_830w8")]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_jk2nx"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_pv4rp"]
-[ext_resource type="PackedScene" path="res://scenes/creatures/gemboy.tscn" id="3_47fxn"]
+[ext_resource type="PackedScene" uid="uid://co3amehfa2p1l" path="res://scenes/creatures/gemboy.tscn" id="3_47fxn"]
 [ext_resource type="PackedScene" uid="uid://da5vfq0yjp30b" path="res://scenes/creatures/spikebug.tscn" id="4_83ihf"]
 [ext_resource type="PackedScene" uid="uid://c4yv11suc2n37" path="res://scenes/creatures/spikebug-corpse.tscn" id="5_i2062"]
 

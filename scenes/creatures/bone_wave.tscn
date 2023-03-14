@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://bb1t74d67fjv"]
+
+[ext_resource type="Script" path="res://scenes/creatures/BoneWave.gd" id="1_m73oc"]
+[ext_resource type="Texture2D" uid="uid://bmj44q882q8x3" path="res://assets/creatures/bonewave.png" id="2_w4xs0"]
+[ext_resource type="Texture2D" uid="uid://cqiksaji3x2wf" path="res://assets/particles/dust.png" id="3_nanxd"]
+[ext_resource type="Texture2D" uid="uid://btrwnawvfvnvs" path="res://assets/particles/bone.png" id="4_q42mr"]
+[ext_resource type="PackedScene" uid="uid://t0raixkbvbm1" path="res://scenes/creatures/damage_area.tscn" id="5_7dsum"]
+
+[sub_resource type="Gradient" id="Gradient_hbgjl"]
+colors = PackedColorArray(1, 1, 1, 0.709804, 1, 1, 1, 0.160784)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j5bi"]
+resource_local_to_scene = true
+size = Vector2(17, 17.5)
+
+[node name="BoneWave" type="Node2D"]
+script = ExtResource("1_m73oc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_w4xs0")
+
+[node name="DustParticles" type="CPUParticles2D" parent="."]
+position = Vector2(15, 0)
+amount = 30
+lifetime = 3.0
+speed_scale = 2.0
+texture = ExtResource("3_nanxd")
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(-0.5, -1)
+spread = 20.0
+gravity = Vector2(0, 10)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = 90.0
+angular_velocity_max = 120.0
+damping_min = 2.0
+damping_max = 4.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_hbgjl")
+
+[node name="BoneParticles" type="CPUParticles2D" parent="."]
+position = Vector2(15, 0)
+amount = 40
+lifetime = 3.0
+speed_scale = 2.0
+texture = ExtResource("4_q42mr")
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(-0.5, -1)
+spread = 20.0
+gravity = Vector2(0, 10)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = 90.0
+angular_velocity_max = 120.0
+damping_min = 2.0
+damping_max = 4.0
+scale_amount_min = 0.5
+scale_amount_max = 0.8
+color_ramp = SubResource("Gradient_hbgjl")
+
+[node name="DamageArea" parent="." instance=ExtResource("5_7dsum")]
+damage = 20
+one_time = true
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_8j5bi")
+
+[editable path="DamageArea"]
