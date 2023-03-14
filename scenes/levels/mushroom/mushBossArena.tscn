@@ -2,10 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_hyjb1"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_teuln"]
-[ext_resource type="PackedScene" uid="uid://cd8fmt33mxh0g" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_fgd6r"]
+[ext_resource type="PackedScene" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_fgd6r"]
 [ext_resource type="PackedScene" uid="uid://dc5hkc0h23rdi" path="res://scenes/creatures/spitter-alpha.tscn" id="4_0w4u1"]
 
 [node name="caveSelfLair" instance=ExtResource("1_hyjb1")]
+song = "boss"
 
 [node name="TileMap" parent="." index="0"]
 layer_0/name = "Cave Layer 1"

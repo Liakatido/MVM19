@@ -34,6 +34,9 @@ func _shake(strength : int = DEFAULT_STRENGTH):
 func spawn_audio(sound, db, pitch=1.0):
 	game.spawn_audio(sound, db, pitch)
 
+func play_song(song):
+	game.play_song(song)
+
 func flash_screen():
 	flash_ui.flash_screen()
 

@@ -1,5 +1,9 @@
 extends Node
 
+const BackgroundSong = preload("res://assets/songs/raptor1.ogg")
+const BossSong = preload("res://assets/songs/raptor_boss.ogg")
+
+@onready var music = $Music
 @onready var main_menu = $MainMenu
 @onready var death_screen = get_node("%DeathScreen")
 
@@ -29,6 +33,7 @@ func switch_to_level(level, gate, clean_previous : bool = true):
 	current_level.connect("switch_to_level", switch_to_level)
 	last_gate = gate
 	call_deferred("add_child", current_level)
+	play_song("normal")
 
 func load_game():
 	# hardcoded save state
@@ -69,6 +74,27 @@ func reload_menu():
 
 func exit_game():
 	get_tree().quit()
+
+var playing : String
+func play_song(song : String):
+	if song == playing:
+		return
+		
+
+	
+	var tween = create_tween()
+	tween.tween_property(music, "volume_db", -50, 0.5)
+	match song:
+		"boss":
+			tween.tween_callback(set_music_stream.bind(BossSong))
+		"normal":
+			tween.tween_callback(set_music_stream.bind(BackgroundSong))
+	tween.tween_callback(music.play)
+	tween.tween_property(music, "volume_db", -25, 0.5)
+	playing = song
+
+func set_music_stream(song):
+	music.stream = song
 
 func spawn_audio(sound, db : float = 0, pitch : float = 1.0):
 	var audio_to_spawn = AudioStreamPlayer.new()

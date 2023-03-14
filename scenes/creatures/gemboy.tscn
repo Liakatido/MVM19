@@ -87,6 +87,7 @@ _data = {
 
 [node name="Gemboy" instance=ExtResource("1_o7yi2")]
 corpse_path = "res://scenes/creatures/gemboy-corpse.tscn"
+knockback_resistance = 100.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_mjned")

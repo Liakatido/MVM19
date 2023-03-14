@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_5fety"]
 [ext_resource type="TileSet" uid="uid://bse03qav5cch5" path="res://scenes/levels/tilesets/cave_tileset.tres" id="2_jlnts"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_pioi3"]
-[ext_resource type="PackedScene" uid="uid://cd8fmt33mxh0g" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_gubgl"]
+[ext_resource type="PackedScene" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_gubgl"]
 
 [node name="caveSelfLair" type="Node2D"]
 script = ExtResource("1_5fety")

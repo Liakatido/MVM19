@@ -12,6 +12,7 @@ const BreakAudio = preload("res://assets/sounds/player/crash.ogg")
 @onready var gates = $Gates
 
 @export var spawn_gate : String
+@export var song : String = "normal"
 
 var camera : Camera2D
 var setup_complete : bool = false
@@ -37,6 +38,8 @@ func setup():
 	
 	# setup level specific stuff
 	setup_breakable_tiles()
+	
+	Utils.play_song(song)
 	
 	setup_complete = true
 

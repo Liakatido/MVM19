@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_yvvmy"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_qx8sd"]
-[ext_resource type="PackedScene" uid="uid://cd8fmt33mxh0g" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_o5m5d"]
+[ext_resource type="PackedScene" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_o5m5d"]
 [ext_resource type="PackedScene" uid="uid://cnfj35ka2gvwk" path="res://scenes/creatures/healther.tscn" id="4_72sn2"]
 
 [node name="caveSelfLair" instance=ExtResource("1_yvvmy")]

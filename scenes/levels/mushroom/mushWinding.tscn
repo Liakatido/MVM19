@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_voouf"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_0jus5"]
-[ext_resource type="PackedScene" uid="uid://cd8fmt33mxh0g" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_fiaqv"]
+[ext_resource type="PackedScene" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_fiaqv"]
 [ext_resource type="PackedScene" uid="uid://daxp300dp6r3n" path="res://scenes/levels/save_point.tscn" id="3_xu06g"]
 [ext_resource type="PackedScene" uid="uid://crs8jcearxo20" path="res://scenes/creatures/ammoer.tscn" id="5_ny367"]
 [ext_resource type="PackedScene" uid="uid://b2ruls1fn44k5" path="res://scenes/creatures/flyer.tscn" id="6_s6tu6"]
@@ -72,15 +72,18 @@ scale = Vector2(0.935277, 1.11656)
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(-33.4995, -2.827)
 
+[node name="SavePoint" parent="Gates" index="3" instance=ExtResource("3_xu06g")]
+position = Vector2(223, 612)
+gate_id = "mushroomsave"
+to_level = "res://scenes/levels/mushroom/mushWinding.tscn"
+to_gate = "mushroomsave"
+
 [node name="ParallaxBackground2" parent="." index="3" instance=ExtResource("3_fiaqv")]
 
-[node name="SavePoint" parent="." index="4" instance=ExtResource("3_xu06g")]
-position = Vector2(223, 612)
-
-[node name="Enemy" parent="." index="5" instance=ExtResource("5_ny367")]
+[node name="Enemy" parent="." index="4" instance=ExtResource("5_ny367")]
 position = Vector2(311, 329)
 
-[node name="Enemy2" parent="." index="6" instance=ExtResource("6_s6tu6")]
+[node name="Enemy2" parent="." index="5" instance=ExtResource("6_s6tu6")]
 position = Vector2(390, 144)
 
 [node name="CollisionShape2D" parent="Enemy2" index="1"]
