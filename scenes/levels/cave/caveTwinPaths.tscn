@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_a32ta"]
 [ext_resource type="PackedScene" uid="uid://euanwexm70yw" path="res://scenes/creatures/lightbug.tscn" id="3_v7dhg"]
 [ext_resource type="PackedScene" uid="uid://da5vfq0yjp30b" path="res://scenes/creatures/spikebug.tscn" id="4_8l0nb"]
-[ext_resource type="PackedScene" path="res://scenes/creatures/gemboy.tscn" id="5_kkoem"]
+[ext_resource type="PackedScene" uid="uid://co3amehfa2p1l" path="res://scenes/creatures/gemboy.tscn" id="5_kkoem"]
 [ext_resource type="PackedScene" uid="uid://cnfj35ka2gvwk" path="res://scenes/creatures/healther.tscn" id="6_kx4x8"]
 
 [node name="caveSelfLair" instance=ExtResource("1_n8ka8")]
@@ -72,6 +72,20 @@ position = Vector2(7.40774, -7.62529)
 [node name="Marker2D" parent="Gates/LevelGate4" index="1"]
 position = Vector2(-8.88932, -0.897092)
 
+[node name="LevelGate5" parent="Gates" index="4" instance=ExtResource("2_a32ta")]
+position = Vector2(241, 474)
+scale = Vector2(1.34994, 2.22942)
+gate_id = "twinBonus"
+to_level = "res://scenes/levels/mushroom/mushBonus.tscn"
+to_gate = "bonusTop"
+
+[node name="CollisionShape2D" parent="Gates/LevelGate5" index="0"]
+position = Vector2(28.8902, -8.97095)
+scale = Vector2(2.99476, 0.546532)
+
+[node name="Marker2D" parent="Gates/LevelGate5" index="1"]
+position = Vector2(30.3718, -21.5303)
+
 [node name="lightbug" parent="." index="3" instance=ExtResource("3_v7dhg")]
 position = Vector2(160, 149)
 
@@ -101,3 +115,4 @@ position = Vector2(555, 342)
 [editable path="Gates/LevelGate2"]
 [editable path="Gates/LevelGate3"]
 [editable path="Gates/LevelGate4"]
+[editable path="Gates/LevelGate5"]
