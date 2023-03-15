@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://daxp300dp6r3n"]
+[gd_scene load_steps=8 format=3 uid="uid://daxp300dp6r3n"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_gate.gd" id="1_8lu7b"]
 [ext_resource type="Script" path="res://scenes/levels/save_point.gd" id="1_a8a00"]
 [ext_resource type="Texture2D" uid="uid://cjnp3ejsr0jqm" path="res://assets/nest.png" id="1_r1a0l"]
 [ext_resource type="Texture2D" uid="uid://ddbfbefqt0nrs" path="res://assets/eletter.png" id="4_gt3yr"]
+[ext_resource type="Theme" uid="uid://dvuvtxx5t5sr5" path="res://assets/font.tres" id="4_prhqt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elx23"]
 size = Vector2(14, 28)
@@ -54,6 +55,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="SaveArea/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_prhqt")
 theme_override_font_sizes/font_size = 10
 text = "Press"
 horizontal_alignment = 1

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbibb01cxsmf2"]
+[gd_scene load_steps=4 format=3 uid="uid://bbibb01cxsmf2"]
 
 [ext_resource type="Script" path="res://scenes/menus/death_menu.gd" id="1_bkpop"]
+[ext_resource type="FontFile" uid="uid://nhjol25r0vd6" path="res://assets/big-monster.ttf" id="2_i6slh"]
+[ext_resource type="Theme" uid="uid://dvuvtxx5t5sr5" path="res://assets/font.tres" id="3_mfl2g"]
 
 [node name="DeathMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -15,6 +17,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_i6slh")
 theme_override_font_sizes/font_size = 12
 text = "Continue?"
 horizontal_alignment = 1
@@ -26,12 +29,14 @@ alignment = 1
 
 [node name="YesButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_mfl2g")
 theme_override_font_sizes/font_size = 14
 text = "yes
 "
 
 [node name="NoButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_mfl2g")
 theme_override_font_sizes/font_size = 14
 text = "no
 "

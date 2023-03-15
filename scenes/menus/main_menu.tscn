@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://n3qu2bq3xjpe"]
+[gd_scene load_steps=4 format=3 uid="uid://n3qu2bq3xjpe"]
 
 [ext_resource type="Script" path="res://scenes/menus/MenuButtons.gd" id="1_oq8kc"]
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_tugie"]
+[ext_resource type="Theme" uid="uid://dvuvtxx5t5sr5" path="res://assets/font.tres" id="3_rj8f4"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -27,10 +28,12 @@ alignment = 1
 
 [node name="Start" type="Button" parent="MenuButtons/Buttons"]
 layout_mode = 2
+theme = ExtResource("3_rj8f4")
 text = "Start Game"
 
 [node name="Exit" type="Button" parent="MenuButtons/Buttons"]
 layout_mode = 2
+theme = ExtResource("3_rj8f4")
 text = "Exit
 "
 
