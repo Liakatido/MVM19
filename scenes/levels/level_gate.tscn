@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://scenes/levels/level_gate.gd" id="1_1uu20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmxec"]
-size = Vector2(20, 26.9619)
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
 
 [node name="LevelGate" type="Area2D"]
 collision_layer = 0

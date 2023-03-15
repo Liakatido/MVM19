@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfce1ilqr0eby"]
+[gd_scene load_steps=9 format=3 uid="uid://bfce1ilqr0eby"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_h4mv5"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_e7260"]
 [ext_resource type="PackedScene" uid="uid://euanwexm70yw" path="res://scenes/creatures/lightbug.tscn" id="3_o0u0d"]
 [ext_resource type="PackedScene" uid="uid://da5vfq0yjp30b" path="res://scenes/creatures/spikebug.tscn" id="4_2ijeb"]
 [ext_resource type="PackedScene" uid="uid://c4yv11suc2n37" path="res://scenes/creatures/spikebug-corpse.tscn" id="5_b2ctb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x4cv"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jr6i"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdjun"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
 
 [node name="caveSelfLair" instance=ExtResource("1_h4mv5")]
 
@@ -21,6 +33,7 @@ to_gate = "selfLairRight"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate" index="0"]
 position = Vector2(0.740774, -35.4352)
+shape = SubResource("RectangleShape2D_1x4cv")
 
 [node name="Marker2D" parent="Gates/LevelGate" index="1"]
 position = Vector2(17.7786, -27.3614)
@@ -34,6 +47,7 @@ to_gate = "openLeft"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
 position = Vector2(0.740774, -33.641)
+shape = SubResource("RectangleShape2D_0jr6i")
 
 [node name="Marker2D" parent="Gates/LevelGate2" index="1"]
 position = Vector2(-18.5193, -23.773)
@@ -41,13 +55,14 @@ position = Vector2(-18.5193, -23.773)
 [node name="LevelGate3" parent="Gates" index="2" instance=ExtResource("2_e7260")]
 position = Vector2(415, 90)
 scale = Vector2(1.34994, 2.22942)
-gate_id = "smallBonus"
-to_level = "res://scenes/levels/stone/stoneBonus.tscn"
-to_gate = "stoneBonus"
+gate_id = "cavesToStone"
+to_level = "res://scenes/levels/stone/stoneToCaves.tscn"
+to_gate = "stoneToCaves"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate3" index="0"]
 position = Vector2(5.92616, -40.3692)
 scale = Vector2(2.04425, 0.186439)
+shape = SubResource("RectangleShape2D_vdjun")
 
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(-8.14854, -27.8099)

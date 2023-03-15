@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch4sk60s817yu"]
+
+[ext_resource type="PackedScene" uid="uid://c6u78mmi0puws" path="res://scenes/creatures/corpse.tscn" id="1_n415u"]
+[ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="2_kvq2t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6be5"]
+resource_local_to_scene = true
+size = Vector2(19.5, 12.5)
+
+[node name="Corpse" instance=ExtResource("1_n415u")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_kvq2t")
+region_enabled = true
+region_rect = Rect2(0, 224, 32, 32)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_p6be5")

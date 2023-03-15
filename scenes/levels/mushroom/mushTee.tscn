@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://cor3xlgyme82s"]
+[gd_scene load_steps=11 format=3 uid="uid://cor3xlgyme82s"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_q3w54"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_20khs"]
+[ext_resource type="PackedScene" uid="uid://daxp300dp6r3n" path="res://scenes/levels/save_point.tscn" id="3_lqbkp"]
 [ext_resource type="PackedScene" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_nl5cw"]
+[ext_resource type="PackedScene" uid="uid://b2ruls1fn44k5" path="res://scenes/creatures/flyer.tscn" id="5_qog2w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u8s7"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbwj3"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30oj4"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffb2g"]
+resource_local_to_scene = true
+size = Vector2(17.9097, 28.9513)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brt8n"]
+resource_local_to_scene = true
+size = Vector2(16, 15)
 
 [node name="caveSelfLair" instance=ExtResource("1_q3w54")]
 
@@ -22,6 +44,7 @@ to_gate = "shaftPit"
 [node name="CollisionShape2D" parent="Gates/LevelGate" index="0"]
 position = Vector2(-11.1116, -7.17676)
 scale = Vector2(0.882172, 0.740468)
+shape = SubResource("RectangleShape2D_7u8s7")
 
 [node name="Marker2D" parent="Gates/LevelGate" index="1"]
 position = Vector2(3.70387, -3.13983)
@@ -36,6 +59,7 @@ to_gate = "pitBottomRight"
 [node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
 position = Vector2(-19.6094, -18.8466)
 scale = Vector2(1.00718, 1.55998)
+shape = SubResource("RectangleShape2D_mbwj3")
 
 [node name="Marker2D" parent="Gates/LevelGate2" index="1"]
 position = Vector2(-4.0853, -1.41352)
@@ -49,12 +73,45 @@ to_gate = "mushStarboard"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate3" index="0"]
 position = Vector2(13.89, -9.89448)
+shape = SubResource("RectangleShape2D_30oj4")
 
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(-4.08541, 0.942332)
 
+[node name="SavePoint" parent="Gates" index="3" instance=ExtResource("3_lqbkp")]
+position = Vector2(107, 228)
+gate_id = "mushroomTeeSave"
+to_level = "res://scenes/levels/mushroom/mushTee.tscn"
+to_gate = "mushroomTeeSave"
+
 [node name="ParallaxBackground2" parent="." index="3" instance=ExtResource("3_nl5cw")]
+
+[node name="Flyer" parent="." index="4" instance=ExtResource("5_qog2w")]
+position = Vector2(510, 270)
+
+[node name="CollisionShape2D" parent="Flyer" index="1"]
+shape = SubResource("RectangleShape2D_ffb2g")
+
+[node name="CollisionShape2D" parent="Flyer/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_brt8n")
+
+[node name="Path" parent="Flyer/AI" index="0"]
+points = PackedVector2Array(-10, 1, 76, 0)
+
+[node name="Flyer2" parent="." index="5" instance=ExtResource("5_qog2w")]
+position = Vector2(170, 443)
+
+[node name="CollisionShape2D" parent="Flyer2" index="1"]
+shape = SubResource("RectangleShape2D_ffb2g")
+
+[node name="CollisionShape2D" parent="Flyer2/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_brt8n")
+
+[node name="Path" parent="Flyer2/AI" index="0"]
+points = PackedVector2Array(-10, 1, 116, -39, 326, -38)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]
 [editable path="Gates/LevelGate3"]
+[editable path="Flyer"]
+[editable path="Flyer2"]

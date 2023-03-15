@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhgbi64doeqv"]
+[gd_scene load_steps=9 format=3 uid="uid://dhgbi64doeqv"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_jk2nx"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_pv4rp"]
 [ext_resource type="PackedScene" uid="uid://co3amehfa2p1l" path="res://scenes/creatures/gemboy.tscn" id="3_47fxn"]
 [ext_resource type="PackedScene" uid="uid://da5vfq0yjp30b" path="res://scenes/creatures/spikebug.tscn" id="4_83ihf"]
 [ext_resource type="PackedScene" uid="uid://c4yv11suc2n37" path="res://scenes/creatures/spikebug-corpse.tscn" id="5_i2062"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmbpi"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qip5q"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45uhi"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
 
 [node name="caveSelfLair" instance=ExtResource("1_jk2nx")]
 
@@ -28,6 +40,7 @@ to_gate = "smallRight"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate" index="0"]
 position = Vector2(5.18542, -12.1108)
+shape = SubResource("RectangleShape2D_pmbpi")
 
 [node name="Marker2D" parent="Gates/LevelGate" index="1"]
 position = Vector2(22.964, -4.03694)
@@ -41,6 +54,7 @@ to_gate = "twinTopLeft"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
 position = Vector2(13.3339, -13.0079)
+shape = SubResource("RectangleShape2D_qip5q")
 
 [node name="Marker2D" parent="Gates/LevelGate2" index="1"]
 position = Vector2(-3.70385, -2.24272)
@@ -54,6 +68,7 @@ to_gate = "twinBottomLeft"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate3" index="0"]
 position = Vector2(21.4824, -6.7282)
+shape = SubResource("RectangleShape2D_45uhi")
 
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(5.18544, 0.448549)

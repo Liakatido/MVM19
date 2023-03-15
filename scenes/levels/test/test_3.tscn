@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://d01thkydo7bif"]
+[gd_scene load_steps=5 format=3 uid="uid://d01thkydo7bif"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_vr8en"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_krsl8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbqrx"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rh6fh"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
 
 [node name="Test1" instance=ExtResource("1_vr8en")]
 spawn_gate = "entry"
@@ -16,6 +24,9 @@ gate_id = "entry"
 to_level = "res://scenes/levels/test/test_1.tscn"
 to_gate = "left"
 
+[node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
+shape = SubResource("RectangleShape2D_qbqrx")
+
 [node name="Marker2D" parent="Gates/LevelGate2" index="1"]
 position = Vector2(-15.5241, 7.06748)
 
@@ -25,6 +36,9 @@ scale = Vector2(1.2239, 2.1224)
 gate_id = "to_test_4"
 to_level = "res://scenes/levels/test/test_4.tscn"
 to_gate = "test4"
+
+[node name="CollisionShape2D" parent="Gates/LevelGate3" index="0"]
+shape = SubResource("RectangleShape2D_rh6fh")
 
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(15.5241, 6.12514)

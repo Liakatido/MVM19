@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cqiksaji3x2wf" path="res://assets/particles/dust.png" id="9_hkxte"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dcpus"]
-size = Vector2(2, 10.75)
+size = Vector2(8, 6.75)
 
 [sub_resource type="Curve" id="Curve_3hy4q"]
 _data = [Vector2(0.032967, 1), 0.0, 0.0, 0, 0, Vector2(0.994506, 0.290909), 0.0, 0.0, 0, 0]
@@ -277,7 +277,7 @@ size = Vector2(7, 7)
 script = ExtResource("1_8hr0t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5.625)
+position = Vector2(0, -3.625)
 shape = SubResource("RectangleShape2D_dcpus")
 
 [node name="DashParticles" type="CPUParticles2D" parent="."]

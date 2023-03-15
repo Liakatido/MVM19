@@ -59,6 +59,8 @@ func load_game():
 	#save_state.gate = "bossTest"
 	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
 	save_state.gate = "safeCave"
+	#save_state.level = "res://scenes/levels/stone/stoneShaftEntrance.tscn"
+	#save_state.gate = "stoneEntranceSave"
 	Data.last_save = save_state
 	
 	Data.set_stats_from_last_save()

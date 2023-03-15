@@ -46,7 +46,7 @@ func get_eaten(_damage, _direction):
 		Kind.SPIT:
 			Data.spit_enabled = true
 		Kind.CHARGE:
-			Data.charge_enabled = true
+			Data.dash_enabled = true
 	
 	destroy()
 

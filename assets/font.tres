@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://dvuvtxx5t5sr5"]
 
-[ext_resource type="FontFile" uid="uid://nhjol25r0vd6" path="res://assets/big-monster.ttf" id="1_tqp3c"]
+[ext_resource type="FontFile" uid="uid://g5g130t27y3e" path="res://scenes/levels/cave/font.tres" id="1_t6wms"]
 
 [resource]
-default_font = ExtResource("1_tqp3c")
+default_font = ExtResource("1_t6wms")

@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd8l3nify8mfu"]
+[gd_scene load_steps=8 format=3 uid="uid://bd8l3nify8mfu"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_e5lny"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_dfde7"]
 [ext_resource type="PackedScene" uid="uid://euanwexm70yw" path="res://scenes/creatures/lightbug.tscn" id="3_830w8"]
 [ext_resource type="PackedScene" uid="uid://daxp300dp6r3n" path="res://scenes/levels/save_point.tscn" id="3_xqmox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na2xo"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eg1k5"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dto1r"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
 
 [node name="caveSelfLair" instance=ExtResource("1_e5lny")]
 
@@ -20,6 +32,7 @@ to_gate = "caveTunnelRight"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate" index="0"]
 position = Vector2(0.740774, -35.4352)
+shape = SubResource("RectangleShape2D_na2xo")
 
 [node name="Marker2D" parent="Gates/LevelGate" index="1"]
 position = Vector2(16.297, -23.773)
@@ -33,6 +46,7 @@ to_gate = "smallLeft"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
 position = Vector2(-53.926, -28.7411)
+shape = SubResource("RectangleShape2D_eg1k5")
 
 [node name="Marker2D" parent="Gates/LevelGate2" index="1"]
 position = Vector2(-75.1696, -16.9619)
@@ -46,6 +60,7 @@ to_gate = "tunnelAmmo"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate3" index="0"]
 position = Vector2(-53.926, -28.7411)
+shape = SubResource("RectangleShape2D_dto1r")
 
 [node name="Marker2D" parent="Gates/LevelGate3" index="1"]
 position = Vector2(-39.2189, -24.5006)

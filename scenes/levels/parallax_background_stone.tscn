@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://wlibgfi11p7"]
+[gd_scene load_steps=2 format=3 uid="uid://buda08uuchs4w"]
 
-[ext_resource type="Texture2D" uid="uid://c5732q3cgouvf" path="res://assets/backgrounds/caves1.png" id="1_r0es1"]
+[ext_resource type="Texture2D" uid="uid://g10278tnnqgd" path="res://assets/backgrounds/stone.png" id="1_kc04t"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 scroll_base_scale = Vector2(0.3, 0.3)
@@ -13,5 +13,5 @@ modulate = Color(0.560784, 0.682353, 0.690196, 1)
 texture_repeat = 2
 offset_right = 964.0
 offset_bottom = 922.0
-texture = ExtResource("1_r0es1")
+texture = ExtResource("1_kc04t")
 stretch_mode = 1

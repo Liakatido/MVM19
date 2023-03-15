@@ -1,8 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://qab76yfdl70h"]
+[gd_scene load_steps=7 format=3 uid="uid://qab76yfdl70h"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_2p7fj"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_rgc6c"]
 [ext_resource type="PackedScene" uid="uid://crs8jcearxo20" path="res://scenes/creatures/ammoer.tscn" id="4_7k255"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_165kw"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcj5n"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02aty"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 65.8143)
 
 [node name="caveSelfLair" instance=ExtResource("1_2p7fj")]
 
@@ -19,6 +31,7 @@ to_gate = "selfLairLeft"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate" index="0"]
 position = Vector2(13.334, -11.6622)
+shape = SubResource("RectangleShape2D_165kw")
 
 [node name="Marker2D" parent="Gates/LevelGate" index="1"]
 position = Vector2(-7.40771, -1.63913e-06)
@@ -32,9 +45,23 @@ to_gate = "selfLairAmmo"
 
 [node name="CollisionShape2D" parent="Gates/LevelGate2" index="0"]
 position = Vector2(13.334, -11.6622)
+shape = SubResource("RectangleShape2D_vcj5n")
 
 [node name="Marker2D" parent="Gates/LevelGate2" index="1"]
 position = Vector2(-7.40771, -1.63913e-06)
+
+[node name="LevelGate3" parent="Gates" index="2" instance=ExtResource("2_rgc6c")]
+position = Vector2(3, 106)
+gate_id = "cavesToPreBoss"
+to_level = "res://scenes/levels/cave/cavesPreBoss.tscn"
+to_gate = "cavesToTunnel"
+
+[node name="CollisionShape2D" parent="Gates/LevelGate3" index="0"]
+position = Vector2(-4, 21)
+shape = SubResource("RectangleShape2D_02aty")
+
+[node name="Marker2D" parent="Gates/LevelGate3" index="1"]
+position = Vector2(22, 34)
 
 [node name="Enemy2" parent="." index="3" instance=ExtResource("4_7k255")]
 position = Vector2(682, 358)
@@ -42,3 +69,4 @@ flag = "ammoertunnel"
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]
+[editable path="Gates/LevelGate3"]

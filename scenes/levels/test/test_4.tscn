@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://jnjk3dnvprny"]
+[gd_scene load_steps=4 format=3 uid="uid://jnjk3dnvprny"]
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_1ui3o"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_p625e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7syq5"]
+resource_local_to_scene = true
+size = Vector2(20.3708, 29.6287)
 
 [node name="BaseLevel" instance=ExtResource("1_1ui3o")]
 
@@ -14,6 +18,9 @@ scale = Vector2(1.21514, 2.44744)
 gate_id = "test4"
 to_level = "res://scenes/levels/test/test_3.tscn"
 to_gate = "to_test_4"
+
+[node name="CollisionShape2D" parent="Gates/LevelGate" index="0"]
+shape = SubResource("RectangleShape2D_7syq5")
 
 [node name="Marker2D" parent="Gates/LevelGate" index="1"]
 position = Vector2(16.459, 6.12885)
