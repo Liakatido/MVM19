@@ -6,6 +6,8 @@ const BossSong = preload("res://assets/songs/raptor_boss.ogg")
 @onready var music = $Music
 @onready var main_menu = $MainMenu
 @onready var death_screen = get_node("%DeathScreen")
+@onready var fade = $FadeLayer
+@onready var ui_layer = $uiLayer
 
 var current_level : Level
 var last_gate : String
@@ -21,8 +23,11 @@ func _ready():
 	death_screen.connect("back_to_menu_triggered", reload_menu)
 
 func switch_to_level(level, gate, clean_previous : bool = true):
-	# fade
-	
+	# fade and setup level switch
+	var to_call : Array[Callable] = [_switch_level.bind(level, gate, clean_previous), fade.end_fade]
+	fade.start_fade(to_call)
+
+func _switch_level(level, gate, clean_previous : bool = true):
 	# clean previous level
 	if clean_previous:
 		current_level.disable()
@@ -34,6 +39,8 @@ func switch_to_level(level, gate, clean_previous : bool = true):
 	last_gate = gate
 	call_deferred("add_child", current_level)
 	play_song("normal")
+	
+	ui_layer.show()
 
 func load_game():
 	# hardcoded save state
@@ -69,6 +76,7 @@ func show_death_screen(corpse_position : Vector2, corpse_left : bool = false):
 	death_screen.show_death_screen()
 
 func reload_menu():
+	ui_layer.hide()
 	current_level.disable()
 	main_menu.show()
 
