@@ -2,6 +2,7 @@ extends Node
 
 const BackgroundSong = preload("res://assets/songs/raptor1.ogg")
 const BossSong = preload("res://assets/songs/raptor_boss.ogg")
+const MenuSong = preload("res://assets/songs/raptor_menu.ogg")
 
 @onready var music = $Music
 @onready var main_menu = $MainMenu
@@ -21,6 +22,7 @@ func _ready():
 	
 	death_screen.connect("reload_triggered", reload_from_save)
 	death_screen.connect("back_to_menu_triggered", reload_menu)
+	play_song("menu")
 
 func switch_to_level(level, gate, clean_previous : bool = true):
 	# fade and setup level switch
@@ -50,9 +52,9 @@ func load_game():
 	save_state.max_health = 100
 	save_state.max_ammo = 4
 	save_state.ammo = 4
-	save_state.tail_enabled = true
-	save_state.spit_enabled = true
-	save_state.dash_enabled = true
+	save_state.tail_enabled = false
+	save_state.spit_enabled = false
+	save_state.dash_enabled = false
 	#save_state.level = "res://scenes/levels/cave/caveBossTest.tscn"
 	#save_state.gate = "bossTest"
 	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
@@ -79,6 +81,7 @@ func reload_menu():
 	ui_layer.hide()
 	current_level.disable()
 	main_menu.show()
+	play_song("menu")
 
 func exit_game():
 	get_tree().quit()
@@ -97,6 +100,8 @@ func play_song(song : String):
 			tween.tween_callback(set_music_stream.bind(BossSong))
 		"normal":
 			tween.tween_callback(set_music_stream.bind(BackgroundSong))
+		"menu":
+			tween.tween_callback(set_music_stream.bind(MenuSong))
 	tween.tween_callback(music.play)
 	tween.tween_property(music, "volume_db", -25, 0.5)
 	playing = song

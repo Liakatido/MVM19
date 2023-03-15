@@ -14,3 +14,5 @@ func _process(delta):
 	healthBar.value = Data.health
 	if Data.spit_enabled:
 		spitBar.show()
+	else:
+		spitBar.hide()

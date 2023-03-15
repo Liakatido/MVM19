@@ -53,6 +53,7 @@ tint_progress = Color(0.172549, 0.301961, 0.364706, 1)
 
 [node name="uiSpit" parent="uiLayer/uiMargins/uiSegments/uiBars" instance=ExtResource("6_sfmue")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="DeathScreenLayer" type="CanvasLayer" parent="."]

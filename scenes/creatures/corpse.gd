@@ -43,6 +43,10 @@ func get_eaten(_damage, _direction):
 			Data.max_health += 20
 		Kind.MAX_AMMO:
 			Data.max_ammo += 1
+		Kind.SPIT:
+			Data.spit_enabled = true
+		Kind.CHARGE:
+			Data.charge_enabled = true
 	
 	destroy()
 
