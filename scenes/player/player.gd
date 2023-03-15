@@ -119,7 +119,8 @@ func _unhandled_input(event):
 		dashing = true
 		dash_particles.emitting = true
 	
-	if event.is_action_pressed("spit") and can_spit and not dashing and Data.spit_enabled:
+	if event.is_action_pressed("spit") and can_spit and not dashing and Data.spit_enabled and Data.ammo > 0:
+		Data.ammo = Data.ammo - 1
 		var spit = Spit.instantiate()
 		spit.set_orientation(orientation)
 		spit.global_position = self.global_position + Vector2(orientation.x*5, -10)

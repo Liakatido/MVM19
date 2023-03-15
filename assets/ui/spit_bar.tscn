@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://clgibqj5cbx8g"]
+
+[ext_resource type="Script" path="res://scenes/menus/SpitBar.gd" id="1_qlcek"]
+[ext_resource type="PackedScene" uid="uid://c5tvvis1jmnsa" path="res://assets/ui/spitcell.tscn" id="2_vaofy"]
+
+[node name="SpitBar" type="HBoxContainer"]
+offset_right = 76.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+script = ExtResource("1_qlcek")
+
+[node name="Control" parent="." instance=ExtResource("2_vaofy")]
+layout_mode = 2
+
+[node name="Control2" parent="." instance=ExtResource("2_vaofy")]
+layout_mode = 2
+
+[node name="Control3" parent="." instance=ExtResource("2_vaofy")]
+layout_mode = 2
+
+[node name="Control4" parent="." instance=ExtResource("2_vaofy")]
+layout_mode = 2

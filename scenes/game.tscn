@@ -1,12 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctkmmatjuug00"]
+[gd_scene load_steps=15 format=3 uid="uid://ctkmmatjuug00"]
 
 [ext_resource type="PackedScene" uid="uid://n3qu2bq3xjpe" path="res://scenes/menus/main_menu.tscn" id="1_8whak"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_bvgdj"]
 [ext_resource type="Script" path="res://scenes/menus/uiHandler.gd" id="3_gyt4w"]
 [ext_resource type="Texture2D" uid="uid://c4n50v04vlu6a" path="res://assets/ui/healthBar.png" id="3_qib50"]
 [ext_resource type="Texture2D" uid="uid://sm5t4eilgead" path="res://assets/ui/healthBar2.png" id="4_26oja"]
-[ext_resource type="Texture2D" uid="uid://btfgljjful7df" path="res://assets/ui/spitBar.png" id="5_wi3jr"]
-[ext_resource type="Texture2D" uid="uid://b2455rpvronkt" path="res://assets/ui/spitBar2.png" id="7_f8opt"]
+[ext_resource type="PackedScene" uid="uid://clgibqj5cbx8g" path="res://assets/ui/spit_bar.tscn" id="6_sfmue"]
 [ext_resource type="Texture2D" uid="uid://dthoqqmp4a3pc" path="res://assets/plain.png" id="8_6y1yu"]
 [ext_resource type="Script" path="res://scenes/DeathScreen.gd" id="8_ep68s"]
 [ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="9_ss3gf"]
@@ -52,14 +51,9 @@ texture_under = ExtResource("3_qib50")
 texture_progress = ExtResource("4_26oja")
 tint_progress = Color(0.172549, 0.301961, 0.364706, 1)
 
-[node name="uiSpit" type="TextureProgressBar" parent="uiLayer/uiMargins/uiSegments/uiBars"]
+[node name="uiSpit" parent="uiLayer/uiMargins/uiSegments/uiBars" instance=ExtResource("6_sfmue")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-max_value = 4.0
-value = 4.0
-texture_under = ExtResource("5_wi3jr")
-texture_progress = ExtResource("7_f8opt")
 
 [node name="DeathScreenLayer" type="CanvasLayer" parent="."]
 

@@ -12,6 +12,8 @@ var max_health : int = 100 : set = _set_max_health
 var health : int = 100 : set = _set_health
 var ammo : int = 4 : set = _set_ammo
 var max_ammo : int = 4 : set = _set_max_ammo
+var ammo_ticker : float
+var ammo_cooldown : float = 10
 
 var player_position : Vector2
 
@@ -23,6 +25,13 @@ var flags : Dictionary
 
 var last_save : SaveState
 
+func _process(delta):
+	if ammo < max_ammo:
+		ammo_ticker += delta
+		if ammo_ticker >= ammo_cooldown:
+			ammo_ticker = 0
+			ammo = ammo + 1
+
 func set_stats_from_last_save():
 	max_health = last_save.max_health
 	health = last_save.health
@@ -33,7 +42,7 @@ func set_stats_from_last_save():
 	dash_enabled = last_save.dash_enabled
 	spit_enabled = last_save.spit_enabled
 	
-	flags = last_save.flags
+	flags = last_save.flags.duplicate()
 
 func save(level : String, gate : String):
 	var new_save = SaveState.new()
@@ -48,7 +57,7 @@ func save(level : String, gate : String):
 	new_save.spit_enabled = spit_enabled
 	new_save.tail_enabled = tail_enabled
 	
-	new_save.flags = flags
+	new_save.flags = flags.duplicate()
 	
 	last_save = new_save
 

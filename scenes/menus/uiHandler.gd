@@ -12,5 +12,5 @@ func _ready():
 func _process(delta):
 	healthBar.max_value = Data.max_health
 	healthBar.value = Data.health
-	spitBar.max_value = Data.max_ammo
-	spitBar.value = Data.ammo
+	if Data.spit_enabled:
+		spitBar.show()

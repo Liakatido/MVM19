@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5tvvis1jmnsa"]
+
+[ext_resource type="Texture2D" uid="uid://cff7gpxtnurbo" path="res://assets/ui/spit-empty.png" id="1_ykha8"]
+[ext_resource type="Texture2D" uid="uid://pbmcgy37x65a" path="res://assets/ui/spit-full.png" id="2_mo3d6"]
+
+[node name="Control" type="CenterContainer"]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("1_ykha8")
+texture_progress = ExtResource("2_mo3d6")
