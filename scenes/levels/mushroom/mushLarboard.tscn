@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dy2gbkapxxpro" path="res://scenes/levels/base_level.tscn" id="1_bkht5"]
 [ext_resource type="PackedScene" uid="uid://djgp1w4sb02ty" path="res://scenes/levels/level_gate.tscn" id="2_fcnhs"]
-[ext_resource type="PackedScene" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_msbot"]
+[ext_resource type="PackedScene" uid="uid://cd8fmt33mxh0g" path="res://scenes/levels/parallax_background_mushroom.tscn" id="3_msbot"]
 [ext_resource type="PackedScene" uid="uid://djmon8m4udx24" path="res://scenes/creatures/spitter.tscn" id="4_5wkar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5060n"]
