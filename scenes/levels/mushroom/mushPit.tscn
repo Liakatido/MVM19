@@ -23,11 +23,11 @@ size = Vector2(20.3708, 29.6287)
 resource_local_to_scene = true
 size = Vector2(20.3708, 29.6287)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7vvv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8kk"]
 resource_local_to_scene = true
 size = Vector2(17.9097, 28.9513)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgjvt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdao5"]
 resource_local_to_scene = true
 size = Vector2(16, 15)
 
@@ -105,58 +105,49 @@ position = Vector2(-32.6824, -1.88468)
 
 [node name="ParallaxBackground2" parent="." instance=ExtResource("3_gubgl")]
 
-[node name="Flyer" parent="." instance=ExtResource("5_bgddc")]
-position = Vector2(86, 395)
-
-[node name="CollisionShape2D" parent="Flyer" index="1"]
-shape = SubResource("RectangleShape2D_a7vvv")
-
-[node name="CollisionShape2D" parent="Flyer/Hitbox" index="0"]
-shape = SubResource("RectangleShape2D_lgjvt")
-
-[node name="AI" parent="Flyer" index="6"]
-position = Vector2(8, -4)
-
-[node name="Path" parent="Flyer/AI" index="0"]
-points = PackedVector2Array(-14, 6, 74, 6)
-
-[node name="Flyer2" parent="." instance=ExtResource("5_bgddc")]
-position = Vector2(106, 472)
-
-[node name="CollisionShape2D" parent="Flyer2" index="1"]
-shape = SubResource("RectangleShape2D_a7vvv")
-
-[node name="CollisionShape2D" parent="Flyer2/Hitbox" index="0"]
-shape = SubResource("RectangleShape2D_lgjvt")
-
-[node name="AI" parent="Flyer2" index="6"]
-position = Vector2(8, -4)
-
-[node name="Path" parent="Flyer2/AI" index="0"]
-points = PackedVector2Array(-7, 6, 32, 6)
-
-[node name="Flyer3" parent="." instance=ExtResource("5_bgddc")]
-position = Vector2(122, 615)
-
-[node name="CollisionShape2D" parent="Flyer3" index="1"]
-shape = SubResource("RectangleShape2D_a7vvv")
-
-[node name="CollisionShape2D" parent="Flyer3/Hitbox" index="0"]
-shape = SubResource("RectangleShape2D_lgjvt")
-
-[node name="AI" parent="Flyer3" index="6"]
-position = Vector2(8, -4)
-
-[node name="Path" parent="Flyer3/AI" index="0"]
-points = PackedVector2Array(-4, 6, 31, 6)
-
 [node name="Spitter" parent="." instance=ExtResource("6_15gsr")]
 position = Vector2(400, 674)
+
+[node name="Enemy" parent="." instance=ExtResource("5_bgddc")]
+position = Vector2(108, 379)
+
+[node name="CollisionShape2D" parent="Enemy" index="1"]
+shape = SubResource("RectangleShape2D_qx8kk")
+
+[node name="CollisionShape2D" parent="Enemy/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_sdao5")
+
+[node name="Path" parent="Enemy/AI" index="0"]
+points = PackedVector2Array(-10, 0, 105, 0)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_bgddc")]
+position = Vector2(115, 468)
+
+[node name="CollisionShape2D" parent="Enemy2" index="1"]
+shape = SubResource("RectangleShape2D_qx8kk")
+
+[node name="CollisionShape2D" parent="Enemy2/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_sdao5")
+
+[node name="Path" parent="Enemy2/AI" index="0"]
+points = PackedVector2Array(-10, 0, 25, 0)
+
+[node name="Enemy3" parent="." instance=ExtResource("5_bgddc")]
+position = Vector2(128, 545)
+
+[node name="CollisionShape2D" parent="Enemy3" index="1"]
+shape = SubResource("RectangleShape2D_qx8kk")
+
+[node name="CollisionShape2D" parent="Enemy3/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_sdao5")
+
+[node name="Path" parent="Enemy3/AI" index="0"]
+points = PackedVector2Array(-10, 0, 25, 0)
 
 [editable path="Gates/LevelGate"]
 [editable path="Gates/LevelGate2"]
 [editable path="Gates/LevelGate3"]
 [editable path="Gates/LevelGate4"]
-[editable path="Flyer"]
-[editable path="Flyer2"]
-[editable path="Flyer3"]
+[editable path="Enemy"]
+[editable path="Enemy2"]
+[editable path="Enemy3"]
