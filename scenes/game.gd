@@ -9,6 +9,7 @@ const MenuSong = preload("res://assets/songs/raptor_menu.ogg")
 @onready var death_screen = get_node("%DeathScreen")
 @onready var fade = $FadeLayer
 @onready var ui_layer = $uiLayer
+@onready var message_layer = $MessageScreen
 
 var current_level : Level
 var last_gate : String
@@ -60,7 +61,7 @@ func load_game():
 	save_state.ammo = 4
 	save_state.tail_enabled = false
 	save_state.spit_enabled = false
-	save_state.dash_enabled = false
+	save_state.dash_enabled = true
 	#save_state.level = "res://scenes/levels/cave/caveBossTest.tscn"
 	#save_state.gate = "bossTest"
 	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
@@ -75,6 +76,9 @@ func start_game():
 	main_menu.hide()
 	load_game()
 	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
+
+func show_message(message):
+	message_layer.show_message(message)
 
 func reload_from_save():
 	Data.set_stats_from_last_save()

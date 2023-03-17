@@ -41,12 +41,16 @@ func get_eaten(_damage, _direction):
 		Kind.MAX_HEALTH:
 			# TODO: pop up some ui?
 			Data.max_health += 20
+			Utils.game.show_message("Max health increased")
 		Kind.MAX_AMMO:
 			Data.max_ammo += 1
+			Utils.game.show_message("Max ammo increased")
 		Kind.SPIT:
 			Data.spit_enabled = true
+			Utils.game.show_message("Spit ability obtained")
 		Kind.CHARGE:
 			Data.dash_enabled = true
+			Utils.game.show_message("Charge ability obtained")
 	
 	destroy()
 
