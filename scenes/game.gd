@@ -60,8 +60,8 @@ func load_game():
 	save_state.max_ammo = 4
 	save_state.ammo = 4
 	save_state.tail_enabled = false
-	save_state.spit_enabled = false
-	save_state.dash_enabled = false
+	save_state.spit_enabled = true
+	save_state.dash_enabled = true
 	#save_state.level = "res://scenes/levels/cave/caveBossTest.tscn"
 	#save_state.gate = "bossTest"
 	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
