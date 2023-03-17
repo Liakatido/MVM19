@@ -133,7 +133,7 @@ shape = SubResource("RectangleShape2D_lgjvt")
 position = Vector2(8, -4)
 
 [node name="Path" parent="Flyer2/AI" index="0"]
-points = PackedVector2Array(-14, 6, 40, 6)
+points = PackedVector2Array(-7, 6, 32, 6)
 
 [node name="Flyer3" parent="." instance=ExtResource("5_bgddc")]
 position = Vector2(122, 615)
@@ -148,7 +148,7 @@ shape = SubResource("RectangleShape2D_lgjvt")
 position = Vector2(8, -4)
 
 [node name="Path" parent="Flyer3/AI" index="0"]
-points = PackedVector2Array(-14, 6, 40, 6)
+points = PackedVector2Array(-4, 6, 31, 6)
 
 [node name="Spitter" parent="." instance=ExtResource("6_15gsr")]
 position = Vector2(400, 674)

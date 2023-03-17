@@ -24,6 +24,12 @@ func _ready():
 	death_screen.connect("back_to_menu_triggered", reload_menu)
 	play_song("menu")
 
+func pause():
+	get_tree().paused = true
+
+func resume():
+	get_tree().paused = false
+
 func switch_to_level(level, gate, clean_previous : bool = true):
 	# fade and setup level switch
 	var to_call : Array[Callable] = [_switch_level.bind(level, gate, clean_previous), fade.end_fade]
@@ -92,9 +98,7 @@ var playing : String
 func play_song(song : String):
 	if song == playing:
 		return
-		
 
-	
 	var tween = create_tween()
 	tween.tween_property(music, "volume_db", -50, 0.5)
 	match song:

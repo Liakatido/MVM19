@@ -74,7 +74,7 @@ position = Vector2(404, 109)
 position = Vector2(176, 262)
 
 [node name="Spikebug" parent="." index="5" instance=ExtResource("4_2ijeb")]
-position = Vector2(293, 272)
+position = Vector2(204, 272)
 
 [node name="Spikebug4" parent="." index="6" instance=ExtResource("4_2ijeb")]
 position = Vector2(182, 176)

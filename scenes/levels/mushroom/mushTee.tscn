@@ -47,7 +47,7 @@ scale = Vector2(0.882172, 0.740468)
 shape = SubResource("RectangleShape2D_7u8s7")
 
 [node name="Marker2D" parent="Gates/LevelGate" index="1"]
-position = Vector2(3.70387, -3.13983)
+position = Vector2(9.63006, -2.24274)
 
 [node name="LevelGate2" parent="Gates" index="1" instance=ExtResource("2_20khs")]
 position = Vector2(16, 451)
