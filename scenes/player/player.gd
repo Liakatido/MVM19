@@ -36,6 +36,7 @@ var disabled : bool = false
 var was_on_floor : bool = true
 
 var stunned : bool = false
+var coyote_ticker : float
 const STUN_DURATION = 0.4 # seconds
 var stun_ticker : float
 var stun_velocity : Vector2
@@ -210,12 +211,16 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 	
+	var coyote_time = 0.1
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += GRAVITY * delta
+		coyote_ticker += delta
+		if coyote_ticker >= coyote_time:
+			velocity.y += GRAVITY * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_ticker < coyote_time):
+		coyote_ticker = coyote_time # so it doesnt increase jump height
 		jump_audio.play()
 		dust_particles.restart()
 		dust_particles.emitting = true
@@ -260,6 +265,7 @@ func _physics_process(delta):
 # and does what is needed depending the case
 func check_floor():
 	if is_on_floor() and not was_on_floor:
+		coyote_ticker = 0
 		dust_particles.restart()
 		dust_particles.emitting = true
 		was_on_floor = true
