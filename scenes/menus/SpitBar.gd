@@ -20,9 +20,15 @@ func _process(delta):
 		cells[current_i].get_node("TextureProgressBar").value = (Data.ammo_ticker*100)/Data.ammo_cooldown
 
 func switch_ammo():
-	if Data.max_ammo == 0 or Data.ammo == Data.max_ammo:
+	if Data.max_ammo == 0:
+		return
+	if Data.max_ammo == Data.ammo and len(cells) == Data.max_ammo:
+		fill_all()
 		return
 	current_i = Data.ammo
+	if current_i >= len(cells):
+		# catch switch ammo happening before a new ammo cell is added
+		return
 	# behind current_i should be filled
 	for i in range(current_i):
 		cells[i].get_node("TextureProgressBar").value = 100
@@ -31,13 +37,20 @@ func switch_ammo():
 		for i in range(current_i + 1, len(cells)):
 			cells[i].get_node("TextureProgressBar").value = 0
 
+func fill_all():
+	current_i = Data.ammo
+	# behind current_i should be filled
+	for i in range(current_i):
+		cells[i].get_node("TextureProgressBar").value = 100
+
 func adjust_cells():
 	# add
 	if Data.max_ammo > len(cells):
 		var cell = Cell.instantiate()
+		cell.get_node("TextureProgressBar").value = 100
 		cells.append(cell)
 		add_child(cell)
-		switch_ammo()
+		fill_all() # when increasing max ammo, all ammo is filled up
 	# remove
 	if Data.max_ammo < len(cells):
 		var cell = cells.pop_back()

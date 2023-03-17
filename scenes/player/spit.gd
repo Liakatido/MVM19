@@ -9,7 +9,7 @@ const GooDown = preload("res://scenes/player/goo_down.tscn")
 @onready var hitbox = $Hitbox
 @onready var particles = $CPUParticles2D
 
-@export var DAMAGE = 5
+@export var DAMAGE = 10
 
 const SPEED : float = 200
 const UP_SPEED : float = 100

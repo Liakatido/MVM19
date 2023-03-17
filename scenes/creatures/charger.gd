@@ -20,6 +20,8 @@ var animations : AnimationPlayer
 var damage_area : Area2D
 var sprite : Sprite2D
 var rays : Array[RayCast2D]
+var left_ray : RayCast2D
+var right_ray : RayCast2D
 
 var state : State = State.IDLE
 var charge_ticker : float
@@ -36,7 +38,13 @@ func _ready():
 	
 	for ray in get_children():
 		rays.append(ray)
-
+	
+	if rays[0].position.x < rays[1].position.x:
+		left_ray = rays[0]
+		right_ray = rays[1]
+	else:
+		left_ray = rays[1]
+		right_ray = rays[0]
 
 func _physics_process(delta):
 	match state:
@@ -54,9 +62,12 @@ func direction_to_player() -> Vector2:
 func distance_to_player() -> float:
 	return body.global_position.distance_to(Data.player_position)
 
+func in_same_height() -> bool:
+	return abs(direction_to_player().y) < 0.2
+
 func idle(delta):
 	charge_ticker += delta
-	if charge_ticker >= CHARGE_COOLDOWN and distance_to_player() < ATTACK_RANGE:
+	if charge_ticker >= CHARGE_COOLDOWN and distance_to_player() < ATTACK_RANGE and in_same_height():
 		charge_ticker = 0
 		state = State.CHARGE
 		orientation = Vector2(sign(direction_to_player().x), 0)
@@ -70,7 +81,7 @@ func charge(delta):
 	
 	# stop charging if about to drop
 	for ray in rays:
-		if not ray.is_colliding():
+		if not active_ray_is_colliding():
 			state = State.IDLE
 			damage_area.damage = IDLE_DAMAGE
 			animations.play("idle")
@@ -87,3 +98,9 @@ func charge(delta):
 	# do charge
 	body.velocity = orientation*CHARGE_SPEED
 	body.move_and_slide()
+
+func active_ray_is_colliding() -> bool:
+	if orientation == Vector2.RIGHT:
+		return right_ray.is_colliding()
+	else:
+		return left_ray.is_colliding()

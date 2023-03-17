@@ -9,6 +9,7 @@ const MenuSong = preload("res://assets/songs/raptor_menu.ogg")
 @onready var death_screen = get_node("%DeathScreen")
 @onready var fade = $FadeLayer
 @onready var ui_layer = $uiLayer
+@onready var message_layer = $MessageScreen
 
 var current_level : Level
 var last_gate : String
@@ -23,6 +24,12 @@ func _ready():
 	death_screen.connect("reload_triggered", reload_from_save)
 	death_screen.connect("back_to_menu_triggered", reload_menu)
 	play_song("menu")
+
+func pause():
+	get_tree().paused = true
+
+func resume():
+	get_tree().paused = false
 
 func switch_to_level(level, gate, clean_previous : bool = true):
 	# fade and setup level switch
@@ -53,8 +60,8 @@ func load_game():
 	save_state.max_ammo = 4
 	save_state.ammo = 4
 	save_state.tail_enabled = false
-	save_state.spit_enabled = false
-	save_state.dash_enabled = false
+	save_state.spit_enabled = true
+	save_state.dash_enabled = true
 	#save_state.level = "res://scenes/levels/cave/caveBossTest.tscn"
 	#save_state.gate = "bossTest"
 	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
@@ -69,6 +76,9 @@ func start_game():
 	main_menu.hide()
 	load_game()
 	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
+
+func show_message(message):
+	message_layer.show_message(message)
 
 func reload_from_save():
 	Data.set_stats_from_last_save()
@@ -92,9 +102,7 @@ var playing : String
 func play_song(song : String):
 	if song == playing:
 		return
-		
 
-	
 	var tween = create_tween()
 	tween.tween_property(music, "volume_db", -50, 0.5)
 	match song:

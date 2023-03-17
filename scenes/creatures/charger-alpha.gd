@@ -1,5 +1,9 @@
 extends Node2D
 
+const ChargeSound = preload("res://assets/sounds/player/charger.ogg")
+const CrashSound = preload("res://assets/sounds/player/chargecrash.ogg")
+const WalkSound = preload("res://assets/sounds/player/chargestep.ogg")
+
 enum State {
 	IDLE,
 	CHARGE,
@@ -87,8 +91,13 @@ func idle(delta):
 func is_colliding_player() -> bool:
 	return raycast.get_collider().has_method("is_in_group") and raycast.get_collider().is_in_group("player")
 
-func charge(_delta):
+var sound_ticker : float
+func charge(delta):
 	body.velocity.x = SPEED*orientation.x
+	sound_ticker += delta
+	if sound_ticker >= 0.35:
+		Utils.spawn_audio(WalkSound, -5)
+		sound_ticker = 0
 	
 	# approaching wall
 	if raycast.is_colliding() and not is_colliding_player() and charges <= CHARGES_AMOUNT:
@@ -101,6 +110,7 @@ func charge(_delta):
 		if body.is_on_wall():
 			# crash sound
 			charges = 0
+			Utils.spawn_audio(CrashSound, -10)
 			animations.play("stunned")
 			rocks.spawn_rocks = true
 			get_tree().create_timer(STUNNED_COOLDOWN + 3).connect("timeout", stop_rocks)
@@ -115,6 +125,7 @@ func slide(delta):
 	# stop slide when standing still
 	if (body.velocity.x <= 10 and not body.velocity.x < -10) or (body.velocity.x >= -10 and not body.velocity.x > 10):
 		state = State.CHARGE
+		Utils.spawn_audio(ChargeSound, -10, 0.7)
 		animations.play("run")
 		particles.emitting = false
 		orientation = orientation*-1

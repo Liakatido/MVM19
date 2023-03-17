@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctkmmatjuug00"]
+[gd_scene load_steps=19 format=3 uid="uid://ctkmmatjuug00"]
 
 [ext_resource type="PackedScene" uid="uid://n3qu2bq3xjpe" path="res://scenes/menus/main_menu.tscn" id="1_8whak"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_bvgdj"]
@@ -6,14 +6,24 @@
 [ext_resource type="Texture2D" uid="uid://c4n50v04vlu6a" path="res://assets/ui/healthBar.png" id="3_qib50"]
 [ext_resource type="Texture2D" uid="uid://sm5t4eilgead" path="res://assets/ui/healthBar2.png" id="4_26oja"]
 [ext_resource type="PackedScene" uid="uid://clgibqj5cbx8g" path="res://assets/ui/spit_bar.tscn" id="6_sfmue"]
+[ext_resource type="Script" path="res://scenes/PauseScreen.gd" id="7_64u5i"]
 [ext_resource type="Texture2D" uid="uid://dthoqqmp4a3pc" path="res://assets/plain.png" id="8_6y1yu"]
 [ext_resource type="Script" path="res://scenes/DeathScreen.gd" id="8_ep68s"]
+[ext_resource type="Theme" uid="uid://dvuvtxx5t5sr5" path="res://assets/font.tres" id="8_fcpm7"]
 [ext_resource type="Texture2D" uid="uid://d6tx6vy6hldy" path="res://assets/player.png" id="9_ss3gf"]
 [ext_resource type="PackedScene" uid="uid://bbibb01cxsmf2" path="res://scenes/menus/death_menu.tscn" id="10_oru0b"]
 [ext_resource type="Script" path="res://scenes/menus/uieffects.gd" id="12_kvig5"]
 [ext_resource type="Script" path="res://scenes/menus/fade.gd" id="13_11lqh"]
 [ext_resource type="AudioStream" uid="uid://d1ovl0wcsqv38" path="res://assets/songs/raptor1.ogg" id="13_lb5cu"]
+[ext_resource type="Script" path="res://scenes/MessageScreen.gd" id="13_p1r16"]
 [ext_resource type="Texture2D" uid="uid://cwa8t74imns3p" path="res://assets/fade.png" id="13_vwky2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41xtt"]
+bg_color = Color(0.00784314, 0.0823529, 0.133333, 0.717647)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [node name="Game" type="Node"]
 script = ExtResource("1_bvgdj")
@@ -55,6 +65,31 @@ tint_progress = Color(0.172549, 0.301961, 0.364706, 1)
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="PauseScreen" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("7_64u5i")
+
+[node name="Panel" type="Panel" parent="PauseScreen"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseScreen/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseScreen/Panel/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("8_fcpm7")
+text = "Paused"
 
 [node name="DeathScreenLayer" type="CanvasLayer" parent="."]
 
@@ -103,6 +138,33 @@ offset_bottom = 52.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="MessageScreen" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("13_p1r16")
+
+[node name="PanelContainer" type="PanelContainer" parent="MessageScreen"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -20.0
+offset_right = 51.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_41xtt")
+
+[node name="Label" type="Label" parent="MessageScreen/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("8_fcpm7")
+text = "Your max health increased
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="EffectsLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="EffectsLayer"]
@@ -136,4 +198,5 @@ offset_bottom = 40.0
 texture = ExtResource("13_vwky2")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("13_lb5cu")

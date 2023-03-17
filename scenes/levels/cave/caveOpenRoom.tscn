@@ -76,7 +76,6 @@ position = Vector2(5.18544, 0.448549)
 [node name="Gemboy" parent="." index="3" instance=ExtResource("3_47fxn")]
 position = Vector2(520, 334)
 scale = Vector2(-1, 1)
-knockback_resistance = 10.0
 
 [node name="Spikebug" parent="." index="4" instance=ExtResource("4_83ihf")]
 position = Vector2(679, 191)
