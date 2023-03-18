@@ -57,18 +57,6 @@ tracks/2/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("dashParticles:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_5qux8"]
 resource_name = "attack"
@@ -102,18 +90,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Rect2(0, 96, 32, 32), Rect2(32, 96, 32, 32), Rect2(64, 96, 32, 32)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("dashParticles:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_gvm56"]
@@ -412,22 +388,6 @@ pitch_scale = 0.9
 
 [node name="AttackMarker" type="Marker2D" parent="."]
 position = Vector2(10, -7)
-
-[node name="dashParticles" type="CPUParticles2D" parent="."]
-visible = false
-position = Vector2(10, -7)
-amount = 6
-lifetime = 0.5
-preprocess = 60.0
-explosiveness = 0.33
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 8.0
-direction = Vector2(0, -20)
-spread = 10.0
-gravity = Vector2(-230, 0)
-linear_accel_min = 7.23
-linear_accel_max = 72.29
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
