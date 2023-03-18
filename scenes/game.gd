@@ -60,8 +60,8 @@ func load_game():
 	save_state.max_ammo = 4
 	save_state.ammo = 4
 	save_state.tail_enabled = false
-	save_state.spit_enabled = true
-	save_state.dash_enabled = true
+	save_state.spit_enabled = false
+	save_state.dash_enabled = false
 	#save_state.level = "res://scenes/levels/cave/caveBossTest.tscn"
 	#save_state.gate = "bossTest"
 	save_state.level = "res://scenes/levels/cave/caveSelfLair.tscn"
@@ -74,7 +74,9 @@ func load_game():
 
 func start_game():
 	main_menu.hide()
+	Data.game_loaded = true
 	load_game()
+	Data.count_time = true
 	switch_to_level(Data.last_save.level, Data.last_save.gate, false)
 
 func show_message(message):

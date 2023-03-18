@@ -22,6 +22,9 @@ var dash_enabled : bool
 var spit_enabled : bool
 
 var flags : Dictionary
+var game_loaded : bool = false
+var count_time : bool = false
+var time : float = 0
 
 var last_save : SaveState
 
@@ -31,8 +34,13 @@ func _process(delta):
 		if ammo_ticker >= ammo_cooldown:
 			ammo_ticker = 0
 			ammo = ammo + 1
+	
+	if count_time:
+		time += delta
 
 func set_stats_from_last_save():
+	if not game_loaded:
+		time = last_save.time
 	max_health = last_save.max_health
 	health = last_save.health
 	max_ammo = last_save.max_ammo
@@ -47,6 +55,7 @@ func set_stats_from_last_save():
 func save(level : String, gate : String):
 	var new_save = SaveState.new()
 	new_save.health = health
+	new_save.time = time
 	new_save.max_health = max_health
 	new_save.ammo = ammo
 	new_save.max_ammo = max_ammo
@@ -88,6 +97,7 @@ func _set_ammo(value):
 	emit_signal("ammo_changed")
 
 class SaveState:
+	var time : float
 	# player stats
 	var max_health : int
 	var health : int

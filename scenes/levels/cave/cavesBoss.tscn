@@ -36,12 +36,13 @@ knockback_resistance = 100.0
 
 [node name="Label" type="Label" parent="." index="4"]
 visible = false
-offset_left = 76.0
-offset_top = 65.0
-offset_right = 404.0
-offset_bottom = 173.0
+offset_left = 84.0
+offset_top = 15.0
+offset_right = 412.0
+offset_bottom = 123.0
+size_flags_horizontal = 4
 theme = ExtResource("4_3hgpm")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 10
 text = "Congratulations, you defeated the apex
 and took its place as the strongest.
 
@@ -49,6 +50,25 @@ Thank you for playing!"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_klj2x")
+
+[node name="Label" type="Label" parent="Label" index="0"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -3.0
+offset_right = 51.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Stats:
+Time: {minutes}:{seconds}:{decimals}
+Ammo upgrades: {ammo}/3
+Health upgrades: {health}/4"
 
 [connection signal="destroyed" from="Apex" to="Label" method="_on_apex_destroyed"]
 
